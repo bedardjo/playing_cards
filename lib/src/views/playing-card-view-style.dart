@@ -6,6 +6,7 @@ class PlayingCardViewStyle {
   final Map<Suit, Widget Function(BuildContext context)> suitBuilders;
   final Map<Suit, Map<CardValue, Widget Function(BuildContext context)>>
       cardContentBuilders;
+  final Map<Suit, Color> textColor;
 
   final TextStyle textStyle;
   final Widget Function(BuildContext context, Size size) cardContentsBuilder;
@@ -13,6 +14,7 @@ class PlayingCardViewStyle {
   const PlayingCardViewStyle(
       {this.suitBuilders,
       this.cardContentBuilders,
+      this.textColor,
       this.textStyle,
       this.cardContentsBuilder});
 }

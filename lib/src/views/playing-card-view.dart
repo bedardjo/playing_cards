@@ -24,7 +24,8 @@ class PlayingCardView extends StatelessWidget {
     } else {
       return PlayingCardRawView(
         valueText: card.value.shortName,
-        valueTextStyle: reconciled.textStyle,
+        valueTextStyle:
+            reconciled.textStyle.copyWith(color: style.textColor[card.suit]),
         suitBuilder: reconciled.suitBuilders[card.suit],
         center: reconciled.cardContentBuilders[card.suit][card.value],
       );

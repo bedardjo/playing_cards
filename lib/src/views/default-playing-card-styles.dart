@@ -109,6 +109,12 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
       Suit.hearts: getContentBuilders(Suit.hearts),
       Suit.spades: getContentBuilders(Suit.spades),
     },
+    textColor: {
+      Suit.clubs: Colors.black,
+      Suit.diamonds: Colors.red,
+      Suit.hearts: Colors.red,
+      Suit.spades: Colors.black
+    },
     textStyle: TextStyle(fontSize: 12),
     cardContentsBuilder: null);
 
@@ -119,10 +125,14 @@ PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
   Map<Suit, Widget Function(BuildContext)> suitBuilders = {};
   Map<Suit, Map<CardValue, Widget Function(BuildContext context)>>
       contentBuilders = {};
+  Map<Suit, Color> textColor = {};
   for (Suit suit in Suit.values) {
     suitBuilders[suit] = style.suitBuilders.containsKey(suit)
         ? style.suitBuilders[suit]
         : defaultPlayingCardStyles.suitBuilders[suit];
+    textColor[suit] = style.textColor.containsKey(suit)
+        ? style.textColor[suit]
+        : defaultPlayingCardStyles.textColor[suit];
     contentBuilders[suit] = {};
     for (CardValue val in CardValue.values) {
       contentBuilders[suit][val] =
@@ -140,6 +150,7 @@ PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
   return PlayingCardViewStyle(
       suitBuilders: suitBuilders,
       cardContentBuilders: contentBuilders,
+      textColor: textColor,
       textStyle: style.textStyle == null
           ? defaultPlayingCardStyles.textStyle
           : style.textStyle,
