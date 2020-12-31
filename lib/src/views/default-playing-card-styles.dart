@@ -79,12 +79,15 @@ Map<Suit, Widget Function(BuildContext context)> defaultKingBuilders = {
 };
 
 Map<CardValue, Widget Function(BuildContext context)> getContentBuilders(
-    Suit suit) {
+    Suit suit,
+    Widget Function(BuildContext context) suitBuilder,
+    Map<CardValue, Widget Function(BuildContext context)> overrides) {
   Map<CardValue, Widget Function(BuildContext context)> contentBuilders = {};
   for (CardValue val in [
     CardValue.ace,
     CardValue.two,
     CardValue.three,
+    CardValue.four,
     CardValue.five,
     CardValue.six,
     CardValue.seven,
@@ -92,22 +95,36 @@ Map<CardValue, Widget Function(BuildContext context)> getContentBuilders(
     CardValue.nine,
     CardValue.ten
   ]) {
-    contentBuilders[val] = (context) =>
-        RankCardCenter(rank: val.rank, suitBuilder: defaultSuitBuilders[suit]);
+    contentBuilders[val] = overrides != null && overrides.containsKey(val)
+        ? overrides[val]
+        : (context) => RankCardCenter(rank: val.rank, suitBuilder: suitBuilder);
   }
-  contentBuilders[CardValue.jack] = defaultJackBuilders[suit];
-  contentBuilders[CardValue.queen] = defaultQueenBuilders[suit];
-  contentBuilders[CardValue.king] = defaultKingBuilders[suit];
+  contentBuilders[CardValue.jack] =
+      overrides != null && overrides.containsKey(CardValue.jack)
+          ? overrides[CardValue.jack]
+          : defaultJackBuilders[suit];
+  contentBuilders[CardValue.queen] =
+      overrides != null && overrides.containsKey(CardValue.queen)
+          ? overrides[CardValue.queen]
+          : defaultQueenBuilders[suit];
+  contentBuilders[CardValue.king] =
+      overrides != null && overrides.containsKey(CardValue.king)
+          ? overrides[CardValue.king]
+          : defaultKingBuilders[suit];
   return contentBuilders;
 }
 
 PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
     suitBuilders: defaultSuitBuilders,
     cardContentBuilders: {
-      Suit.clubs: getContentBuilders(Suit.clubs),
-      Suit.diamonds: getContentBuilders(Suit.diamonds),
-      Suit.hearts: getContentBuilders(Suit.hearts),
-      Suit.spades: getContentBuilders(Suit.spades),
+      Suit.clubs:
+          getContentBuilders(Suit.clubs, defaultSuitBuilders[Suit.clubs], null),
+      Suit.diamonds: getContentBuilders(
+          Suit.diamonds, defaultSuitBuilders[Suit.diamonds], null),
+      Suit.hearts: getContentBuilders(
+          Suit.hearts, defaultSuitBuilders[Suit.hearts], null),
+      Suit.spades: getContentBuilders(
+          Suit.spades, defaultSuitBuilders[Suit.spades], null),
     },
     textColor: {
       Suit.clubs: Colors.black,
@@ -127,19 +144,21 @@ PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
       contentBuilders = {};
   Map<Suit, Color> textColor = {};
   for (Suit suit in Suit.values) {
-    suitBuilders[suit] = style.suitBuilders.containsKey(suit)
-        ? style.suitBuilders[suit]
-        : defaultPlayingCardStyles.suitBuilders[suit];
-    textColor[suit] = style.textColor.containsKey(suit)
-        ? style.textColor[suit]
-        : defaultPlayingCardStyles.textColor[suit];
-    contentBuilders[suit] = {};
-    for (CardValue val in CardValue.values) {
-      contentBuilders[suit][val] =
-          style.cardContentBuilders[suit].containsKey(val)
-              ? style.cardContentBuilders[suit][val]
-              : defaultPlayingCardStyles.cardContentBuilders[suit][val];
-    }
+    suitBuilders[suit] =
+        style.suitBuilders != null && style.suitBuilders.containsKey(suit)
+            ? style.suitBuilders[suit]
+            : defaultPlayingCardStyles.suitBuilders[suit];
+    textColor[suit] =
+        style.textColor != null && style.textColor.containsKey(suit)
+            ? style.textColor[suit]
+            : defaultPlayingCardStyles.textColor[suit];
+    contentBuilders[suit] = getContentBuilders(
+        suit,
+        suitBuilders[suit],
+        style.cardContentBuilders != null &&
+                style.cardContentBuilders.containsKey(suit)
+            ? style.cardContentBuilders[suit]
+            : null);
   }
   TextStyle ts = style.textStyle;
   if (ts == null) {
