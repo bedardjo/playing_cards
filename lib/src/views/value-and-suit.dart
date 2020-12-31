@@ -22,6 +22,9 @@ class ValueAndSuit extends StatelessWidget {
               : Text(
                   valueText,
                   style: valueStyle,
+                  maxLines: 1,
+                  softWrap: false,
+                  overflow: TextOverflow.visible,
                 ),
           suitBuilder(context)
         ],
