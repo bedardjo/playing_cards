@@ -113,6 +113,9 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
     cardContentsBuilder: null);
 
 PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
+  if (style == null) {
+    return defaultPlayingCardStyles;
+  }
   Map<Suit, Widget Function(BuildContext)> suitBuilders = {};
   Map<Suit, Map<CardValue, Widget Function(BuildContext context)>>
       contentBuilders = {};
