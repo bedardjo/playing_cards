@@ -90,9 +90,12 @@ class JackOfClubs extends StatelessWidget {
     return PlayingCardView(
         valueText: "J",
         valueTextStyle: TextStyle(color: Colors.black, fontSize: 24),
-        suitBuilder: (context) =>
-            Image.asset("lib/assets/card_imagery/club.png"),
-        center: (context) => Image.asset("lib/assets/card_imagery/jc.png"));
+        suitBuilder: (context) => Image.asset("assets/card_imagery/club.png",
+            package: 'playing_cards'),
+        center: (context) => Image.asset(
+              "assets/card_imagery/jc.png",
+              package: 'playing_cards',
+            ));
   }
 }
 
