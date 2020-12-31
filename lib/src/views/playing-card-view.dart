@@ -84,6 +84,17 @@ double getIdealFontSize(String text, TextStyle style, double fitWidth) {
   return minSize;
 }
 
+class JackOfClubs extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PlayingCardView(
+        valueText: "J",
+        valueTextStyle: TextStyle(color: Colors.black, fontSize: 24),
+        suitBuilder: (context) => Image.asset("assets/card_imagery/club.png"),
+        center: (context) => Image.asset("assets/card_imagery/jc.png"));
+  }
+}
+
 class PlayingCardView extends StatelessWidget {
   final String valueText;
   final TextStyle valueTextStyle;
