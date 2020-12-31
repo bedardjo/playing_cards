@@ -25,7 +25,10 @@ class PlayingCardRawView extends StatelessWidget {
       PlayingCardCardView(childBuilder: (context, size) {
         TextStyle ts = valueBuilder == null
             ? valueTextStyle.copyWith(
-                fontSize: getIdealFontSize("A", valueTextStyle, size.width / 8))
+                fontSize: getIdealFontSize(
+                    valueText.length == 2 ? valueText : "A",
+                    valueTextStyle,
+                    size.width / 8))
             : valueTextStyle;
         return Row(children: [
           Flexible(
