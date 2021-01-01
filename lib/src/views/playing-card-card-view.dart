@@ -22,6 +22,9 @@ class PlayingCardCardView extends StatelessWidget {
             : constraints.maxWidth / playingCardAspectRatio;
         double padding = width * .02;
         return Card(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0)),
+            elevation: 6.0,
             child: childBuilder(
                 context, Size(width - padding * 2.0, height - padding * 2.0)));
       }));

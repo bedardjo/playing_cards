@@ -57,7 +57,7 @@ class PlayingCardRawView extends StatelessWidget {
               )),
           Positioned(
               right: 0,
-              bottom: size.height * 0.035714 + labelHeight,
+              bottom: size.height * 0.035714 + labelHeight + size.height * .01,
               width: sideSpace,
               height: labelSuitHeight,
               child: RotatedBox(quarterTurns: 2, child: suitBuilder(context))),
@@ -78,7 +78,7 @@ class PlayingCardRawView extends StatelessWidget {
                   ))),
           Positioned(
               left: 0,
-              top: size.height * 0.035714 + labelHeight,
+              top: size.height * 0.035714 + labelHeight + size.height * .01,
               width: sideSpace,
               height: labelSuitHeight,
               child: suitBuilder(context)),
