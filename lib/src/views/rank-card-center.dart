@@ -112,7 +112,7 @@ class RankCardCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       LayoutBuilder(builder: (context, constraints) {
-        double suitHeight = constraints.maxHeight / 4.5;
+        double suitHeight = constraints.maxHeight / 5;
         return Row(
           children: [
             Expanded(child: sideColumn(context, suitHeight)),

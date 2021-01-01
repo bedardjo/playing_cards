@@ -11,36 +11,44 @@ class PlayingCardView extends StatelessWidget {
   final PlayingCard card;
   final PlayingCardViewStyle style;
 
+  final bool showBack;
+
   final ShapeBorder shape;
   final double elevation;
 
   const PlayingCardView(
-      {Key key, @required this.card, this.style, this.shape, this.elevation})
+      {Key key,
+      @required this.card,
+      this.style,
+      this.showBack = false,
+      this.shape,
+      this.elevation})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     PlayingCardViewStyle reconciled = reconcileStyle(style);
-    if (reconciled.cardContentsBuilder != null) {
-      return AspectRatio(
-          aspectRatio: playingCardAspectRatio,
-          child: Card(
-              shape: shape,
-              elevation: elevation,
-              child: reconciled.cardContentsBuilder(context)));
+    Widget cardBody;
+    if (showBack) {
+      cardBody = reconciled.cardBackContentBuilder(context);
+    } else if (reconciled.cardContentsBuilder != null) {
+      cardBody = reconciled.cardContentsBuilder(context);
     } else {
-      return AspectRatio(
-          aspectRatio: playingCardAspectRatio,
-          child: Card(
-              shape: shape,
-              elevation: elevation,
-              child: PlayingCardRawView(
-                valueText: card.value.shortName,
-                valueTextStyle: reconciled.textStyle
-                    .copyWith(color: reconciled.textColor[card.suit]),
-                suitBuilder: reconciled.suitBuilders[card.suit],
-                center: reconciled.cardContentBuilders[card.suit][card.value],
-              )));
+      cardBody = PlayingCardRawView(
+        valueText: card.value.shortName,
+        valueTextStyle: reconciled.textStyle
+            .copyWith(color: reconciled.textColor[card.suit]),
+        suitBuilder: reconciled.suitBuilders[card.suit],
+        center: reconciled.cardContentBuilders[card.suit][card.value],
+      );
     }
+
+    return AspectRatio(
+        aspectRatio: playingCardAspectRatio,
+        child: Card(
+            shape: shape,
+            elevation: elevation,
+            clipBehavior: Clip.antiAlias,
+            child: cardBody));
   }
 }

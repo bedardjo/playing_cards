@@ -9,6 +9,7 @@ class PlayingCardViewStyle {
   final Map<Suit, Color> textColor;
 
   final TextStyle textStyle;
+  final Widget Function(BuildContext context) cardBackContentBuilder;
   final Widget Function(BuildContext context) cardContentsBuilder;
 
   const PlayingCardViewStyle(
@@ -16,5 +17,6 @@ class PlayingCardViewStyle {
       this.cardContentBuilders,
       this.textColor,
       this.textStyle,
+      this.cardBackContentBuilder,
       this.cardContentsBuilder});
 }

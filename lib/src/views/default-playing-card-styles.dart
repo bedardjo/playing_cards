@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 import 'package:playing_cards/src/model/suit.dart';
+import 'package:playing_cards/src/util/card-aspect-ratio.dart';
 import 'package:playing_cards/src/views/playing-card-view-style.dart';
 import 'package:playing_cards/src/views/rank-card-center.dart';
 import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
@@ -133,6 +134,11 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
       Suit.spades: Colors.black
     },
     textStyle: TextStyle(fontSize: 12),
+    cardBackContentBuilder: (BuildContext context) => Image.asset(
+          "assets/card_imagery/back_001.png",
+          fit: BoxFit.fill,
+          package: 'playing_cards',
+        ),
     cardContentsBuilder: null);
 
 PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
@@ -173,5 +179,8 @@ PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
       textStyle: style.textStyle == null
           ? defaultPlayingCardStyles.textStyle
           : style.textStyle,
+      cardBackContentBuilder: style.cardBackContentBuilder == null
+          ? defaultPlayingCardStyles.cardBackContentBuilder
+          : style.cardBackContentBuilder,
       cardContentsBuilder: style.cardContentsBuilder);
 }
