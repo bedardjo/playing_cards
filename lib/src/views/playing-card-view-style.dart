@@ -9,7 +9,7 @@ class PlayingCardViewStyle {
   final Map<Suit, Color> textColor;
 
   final TextStyle textStyle;
-  final Widget Function(BuildContext context, Size size) cardContentsBuilder;
+  final Widget Function(BuildContext context) cardContentsBuilder;
 
   const PlayingCardViewStyle(
       {this.suitBuilders,

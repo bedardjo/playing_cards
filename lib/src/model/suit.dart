@@ -1,1 +1,1 @@
-enum Suit { spades, hearts, diamonds, clubs, no_suit }
+enum Suit { spades, hearts, diamonds, clubs }
