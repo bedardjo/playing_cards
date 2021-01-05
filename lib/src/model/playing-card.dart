@@ -6,5 +6,6 @@ class PlayingCard {
   final Suit suit;
   final CardValue value;
 
+  // Creates a playing card. Both parameters are required.
   PlayingCard(this.suit, this.value);
 }

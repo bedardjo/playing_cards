@@ -78,11 +78,11 @@ Map<Suit, Widget Function(BuildContext context)> defaultKingBuilders = {
       ),
 };
 
-Map<CardValue, Widget Function(BuildContext context)> getContentBuilders(
+Map<CardValue, Widget Function(BuildContext context)?> getContentBuilders(
     Suit suit,
     Widget Function(BuildContext context) suitBuilder,
-    Map<CardValue, Widget Function(BuildContext context)> overrides) {
-  Map<CardValue, Widget Function(BuildContext context)> contentBuilders = {};
+    Map<CardValue, Widget Function(BuildContext context)?>? overrides) {
+  Map<CardValue, Widget Function(BuildContext context)?> contentBuilders = {};
   for (CardValue val in [
     CardValue.ace,
     CardValue.two,
@@ -120,22 +120,22 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
           builder: defaultSuitBuilders[Suit.clubs],
           style: TextStyle(fontSize: 12, color: Colors.black),
           cardContentBuilders: getContentBuilders(
-              Suit.clubs, defaultSuitBuilders[Suit.clubs], null)),
+              Suit.clubs, defaultSuitBuilders[Suit.clubs]!, null)),
       Suit.hearts: SuitStyle(
           builder: defaultSuitBuilders[Suit.hearts],
           style: TextStyle(fontSize: 12, color: Colors.red),
           cardContentBuilders: getContentBuilders(
-              Suit.hearts, defaultSuitBuilders[Suit.hearts], null)),
+              Suit.hearts, defaultSuitBuilders[Suit.hearts]!, null)),
       Suit.diamonds: SuitStyle(
           builder: defaultSuitBuilders[Suit.diamonds],
           style: TextStyle(fontSize: 12, color: Colors.red),
           cardContentBuilders: getContentBuilders(
-              Suit.diamonds, defaultSuitBuilders[Suit.diamonds], null)),
+              Suit.diamonds, defaultSuitBuilders[Suit.diamonds]!, null)),
       Suit.spades: SuitStyle(
           builder: defaultSuitBuilders[Suit.spades],
           style: TextStyle(fontSize: 12, color: Colors.black),
           cardContentBuilders: getContentBuilders(
-              Suit.spades, defaultSuitBuilders[Suit.spades], null))
+              Suit.spades, defaultSuitBuilders[Suit.spades]!, null))
     },
     cardBackContentBuilder: (BuildContext context) => Image.asset(
           "assets/card_imagery/back_001.png",
@@ -145,29 +145,29 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
 
 SuitStyle _reconcileSuitStyle(
     Suit suit, SuitStyle defaultSuitStyle, SuitStyle suitStyle) {
-  Widget Function(BuildContext context) builder =
+  Widget Function(BuildContext context)? builder =
       suitStyle.builder ?? defaultSuitStyle.builder;
-  Map<CardValue, Widget Function(BuildContext context)> valueBuilders =
-      getContentBuilders(suit, builder, suitStyle.cardContentBuilders);
+  Map<CardValue, Widget Function(BuildContext context)?> valueBuilders =
+      getContentBuilders(suit, builder!, suitStyle.cardContentBuilders);
   return SuitStyle(
       builder: builder,
       style: suitStyle.style ?? defaultSuitStyle.style,
       cardContentBuilders: valueBuilders);
 }
 
-PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
+PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle? style) {
   if (style == null) {
     return defaultPlayingCardStyles;
   }
   Map<Suit, SuitStyle> suitStyles = {};
   for (Suit suit in Suit.values) {
     suitStyles[suit] =
-        style.suitStyles != null && style.suitStyles.containsKey(suit)
+        style.suitStyles != null && style.suitStyles!.containsKey(suit)
             ? _reconcileSuitStyle(
                 suit,
-                defaultPlayingCardStyles.suitStyles[suit],
-                style.suitStyles[suit])
-            : defaultPlayingCardStyles.suitStyles[suit];
+                defaultPlayingCardStyles.suitStyles![suit]!,
+                style.suitStyles![suit]!)
+            : defaultPlayingCardStyles.suitStyles![suit]!;
   }
 
   return PlayingCardViewStyle(

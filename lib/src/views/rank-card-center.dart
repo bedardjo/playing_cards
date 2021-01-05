@@ -4,7 +4,8 @@ class RankCardCenter extends StatelessWidget {
   final int rank;
   final Widget Function(BuildContext context) suitBuilder;
 
-  const RankCardCenter({Key key, this.rank, this.suitBuilder})
+  const RankCardCenter(
+      {Key? key, required this.rank, required this.suitBuilder})
       : super(key: key);
 
   Widget sideColumn(Widget suit, Widget uSuit) {

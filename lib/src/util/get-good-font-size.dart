@@ -7,8 +7,8 @@ double getGoodFontSize(String text, TextStyle style, double fitWidth) {
       textDirection: TextDirection.ltr);
   textPainter.layout(minWidth: 0, maxWidth: double.infinity);
 
-  double minSize = style.fontSize;
-  double maxSize = style.fontSize;
+  double? minSize = style.fontSize;
+  double? maxSize = style.fontSize;
   if (minSize == null) {
     minSize = 12;
   }
@@ -47,7 +47,7 @@ double getGoodFontSize(String text, TextStyle style, double fitWidth) {
   }
 
   // at this point, min is less and max is larger
-  while ((maxSize - minSize) > 3.0) {
+  while ((maxSize! - minSize!) > 3.0) {
     double mid = minSize + (maxSize - minSize) / 2.0;
     style = style.copyWith(fontSize: mid);
     textPainter = TextPainter(

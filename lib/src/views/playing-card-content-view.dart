@@ -10,11 +10,11 @@ class PlayingCardContentView extends StatelessWidget {
   final Widget Function(BuildContext context) center;
 
   const PlayingCardContentView(
-      {Key key,
-      this.valueText,
-      this.valueTextStyle,
-      this.suitBuilder,
-      this.center})
+      {Key? key,
+      required this.valueText,
+      required this.valueTextStyle,
+      required this.suitBuilder,
+      required this.center})
       : super(key: key);
 
   @override
