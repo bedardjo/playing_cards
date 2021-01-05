@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-double getIdealFontSize(String text, TextStyle style, double fitWidth) {
+double getGoodFontSize(String text, TextStyle style, double fitWidth) {
   TextPainter textPainter = TextPainter(
       text: TextSpan(text: text, style: style),
       maxLines: 1,

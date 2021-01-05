@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:playing_cards/src/model/playing-card.dart';
 import 'package:playing_cards/src/util/card-aspect-ratio.dart';
 import 'package:playing_cards/src/views/default-playing-card-styles.dart';
-import 'package:playing_cards/src/views/playing-card-raw-view.dart';
+import 'package:playing_cards/src/views/playing-card-content-view.dart';
 import 'package:playing_cards/src/views/playing-card-view-style.dart';
 import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
 
@@ -31,10 +31,8 @@ class PlayingCardView extends StatelessWidget {
     Widget cardBody;
     if (showBack) {
       cardBody = reconciled.cardBackContentBuilder(context);
-    } else if (reconciled.cardContentsBuilder != null) {
-      cardBody = reconciled.cardContentsBuilder(context);
     } else {
-      cardBody = PlayingCardRawView(
+      cardBody = PlayingCardContentView(
         valueText: card.value.shortName,
         valueTextStyle: reconciled.textStyle
             .copyWith(color: reconciled.textColor[card.suit]),

@@ -138,8 +138,7 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
           "assets/card_imagery/back_001.png",
           fit: BoxFit.fill,
           package: 'playing_cards',
-        ),
-    cardContentsBuilder: null);
+        ));
 
 PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
   if (style == null) {
@@ -181,6 +180,5 @@ PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
           : style.textStyle,
       cardBackContentBuilder: style.cardBackContentBuilder == null
           ? defaultPlayingCardStyles.cardBackContentBuilder
-          : style.cardBackContentBuilder,
-      cardContentsBuilder: style.cardContentsBuilder);
+          : style.cardBackContentBuilder);
 }
