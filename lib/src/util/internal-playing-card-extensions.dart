@@ -30,6 +30,7 @@ extension CardValueExtension on CardValue {
       case CardValue.ace:
         return "A";
     }
+    throw Exception("not a valid CardValue: " + this.toString());
   }
 
   int get rank {
@@ -61,5 +62,6 @@ extension CardValueExtension on CardValue {
       case CardValue.king:
         return 13;
     }
+    throw Exception("not a valid CardValue: " + this.toString());
   }
 }

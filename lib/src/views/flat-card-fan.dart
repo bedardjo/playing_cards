@@ -1,5 +1,9 @@
 import 'package:flutter/widgets.dart';
 
+// This widget will array the passed in children in a horizontal line.
+// The children will overlap such that the available space is filled
+// and an even space exists between them. Note that if enough horizontal space
+// is provided, the children will not overlap at all.
 class FlatCardFan extends StatelessWidget {
   final List<Widget> children;
 

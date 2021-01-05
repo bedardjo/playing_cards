@@ -7,6 +7,11 @@ import 'package:playing_cards/src/views/playing-card-content-view.dart';
 import 'package:playing_cards/src/views/playing-card-view-style.dart';
 import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
 
+// Primary view for rendering cards. Uses a Material Card with
+// an aspect ratio of 64.0/89.0 (based on the typical card size).
+//
+// Card content is rendered based on passed in style. Default styles are
+// provided, which use imagery from https://commons.wikimedia.org/wiki/Category:SVG_playing_cards
 class PlayingCardView extends StatelessWidget {
   final PlayingCard card;
   final PlayingCardViewStyle style;
