@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 class FlatCardFan extends StatelessWidget {
   final List<Widget> children;
 
-  FlatCardFan({this.children});
+  FlatCardFan({@required this.children});
 
   @override
   Widget build(Object context) => Stack(
