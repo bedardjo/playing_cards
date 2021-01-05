@@ -1,16 +1,39 @@
 # playing_cards
 
-A new Flutter project.
+The `playing_cards` package for Flutter allows you to easily render playing cards from a standard 52 card deck. Good defaults are provided out of box, but full customization is possible if a style object is provided.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To import:
 
-A few resources to get you started if this is your first Flutter project:
+```dart
+import 'package:playing_cards/playing_cards.dart';
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+And here is a simple usage to render a nine of clubs:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```dart
+PlayingCardView(card: PlayingCard(Suit.clubs, CardValue.nine))
+```
+
+Here is an example of a fully styled deck:
+
+```dart
+PlayingCardViewStyle myCardStyles = PlayingCardViewStyle(suitBuilders: {
+      Suit.spades: (context) => FittedBox(
+            fit: BoxFit.fitHeight,
+            child: Text(
+              "💩",
+              style: TextStyle(fontSize: 500),
+            ),
+          )
+    }, textColor: {
+      Suit.spades: Colors.brown,
+    }, cardContentBuilders: {
+      Suit.spades: {
+        CardValue.jack: (context) => Image.asset("assets/jack_of_spades.png"),
+        CardValue.queen: (context) => Image.asset("assets/queen_of_spades.png"),
+        CardValue.king: (context) => Image.asset("assets/king_of_spades.png"),
+      }
+    });
+```
