@@ -24,22 +24,24 @@ Here is an example of a fully styled deck:
 
 ```dart
 // This style object overrides the styles for spades.
-PlayingCardViewStyle myCardStyles = PlayingCardViewStyle(suitBuilders: {
-  Suit.spades: (context) => FittedBox(
-    fit: BoxFit.fitHeight,
-    child: Text(
-      "💩",
-      style: TextStyle(fontSize: 500),
-    ),
-  )
-}, textColor: {
-  Suit.spades: Colors.brown,
-}, cardContentBuilders: {
-  Suit.spades: {
-    CardValue.jack: (context) => Image.asset("assets/jack_of_spades.png"),
-    CardValue.queen: (context) => Image.asset("assets/queen_of_spades.png"),
-    CardValue.king: (context) => Image.asset("assets/king_of_spades.png"),
-  }
+PlayingCardViewStyle myCardStyles = PlayingCardViewStyle(suitStyles: {
+  Suit.spades: SuitStyle(
+    builder: (context) => FittedBox(
+          fit: BoxFit.fitHeight,
+          child: Text(
+            "💩",
+            style: TextStyle(fontSize: 500),
+          ),
+        ),
+    style: TextStyle(color: Colors.brown),
+    cardContentBuilders: {
+      CardValue.jack: (context) =>
+          Image.asset("assets/jack_of_spades.png"),
+      CardValue.queen: (context) =>
+          Image.asset("assets/queen_of_spades.png"),
+      CardValue.king: (context) =>
+          Image.asset("assets/king_of_spades.png"),
+    })
 });
 List<PlayingCard> deck = standardFiftyTwoCardDeck();
 Container(
@@ -54,3 +56,34 @@ Container(
 ```
 
 ![](https://raw.githubusercontent.com/bedardjo/playing_cards/master/readme_images/customized_cards.png)
+
+A flat fan widget is also provided for the common use cases of fanning cards out horizontally:
+
+```dart
+ShapeBorder shape = RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(8),
+  side: BorderSide(color: Colors.black, width: 1));
+FlatCardFan(children: [
+  PlayingCardView(
+    card: PlayingCard(Suit.hearts, CardValue.ace),
+    showBack: true,
+    elevation: 3.0,
+    shape: shape),
+  PlayingCardView(
+      card: PlayingCard(Suit.hearts, CardValue.ace),
+      showBack: true,
+      elevation: 3.0,
+      shape: shape),
+  PlayingCardView(
+      card: PlayingCard(Suit.hearts, CardValue.ace),
+      showBack: true,
+      elevation: 3.0,
+      shape: shape),
+  PlayingCardView(
+      card: PlayingCard(Suit.hearts, CardValue.ace),
+      elevation: 3.0,
+      shape: shape)
+])
+```
+
+![](https://raw.githubusercontent.com/bedardjo/playing_cards/master/readme_images/flat_stack.png)
