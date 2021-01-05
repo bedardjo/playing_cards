@@ -21,6 +21,8 @@ class PlayingCardView extends StatelessWidget {
   final ShapeBorder shape;
   final double elevation;
 
+  // Card is required. Style can be provided to override as little or as much
+  // of the cards look as you so choose.
   const PlayingCardView(
       {Key key,
       @required this.card,
