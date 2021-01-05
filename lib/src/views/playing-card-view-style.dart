@@ -2,6 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:playing_cards/src/model/card-value.dart';
 import 'package:playing_cards/src/model/suit.dart';
 
+// Create a style object if you wish to customize the look of your cards.
+//
+// A style is not required, however, and default styles will use imagery from
+// https://commons.wikimedia.org/wiki/Category:SVG_playing_cards
 class PlayingCardViewStyle {
   // Use this to override the widget for each suit.
   // These will be tiled across the cards in the standard pattern.
