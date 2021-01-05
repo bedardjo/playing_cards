@@ -9,11 +9,20 @@ double getGoodFontSize(String text, TextStyle style, double fitWidth) {
 
   double minSize = style.fontSize;
   double maxSize = style.fontSize;
+  if (minSize == null) {
+    minSize = 12;
+  }
+  if (maxSize == null) {
+    maxSize = 12;
+  }
 
   if (textPainter.size.width < fitWidth) {
     while (textPainter.size.width < fitWidth) {
       minSize = style.fontSize;
-      maxSize = style.fontSize * 2;
+      if (minSize == null) {
+        minSize = 12;
+      }
+      maxSize = minSize * 2;
       style = style.copyWith(fontSize: maxSize);
       textPainter = TextPainter(
           text: TextSpan(text: text, style: style),
@@ -24,7 +33,10 @@ double getGoodFontSize(String text, TextStyle style, double fitWidth) {
   } else {
     while (textPainter.size.width > fitWidth) {
       maxSize = style.fontSize;
-      minSize = style.fontSize / 2;
+      if (maxSize == null) {
+        maxSize = 12;
+      }
+      minSize = maxSize / 2;
       style = style.copyWith(fontSize: minSize);
       textPainter = TextPainter(
           text: TextSpan(text: text, style: style),

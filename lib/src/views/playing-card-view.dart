@@ -39,10 +39,10 @@ class PlayingCardView extends StatelessWidget {
     } else {
       cardBody = PlayingCardContentView(
         valueText: card.value.shortName,
-        valueTextStyle: reconciled.textStyle
-            .copyWith(color: reconciled.textColor[card.suit]),
-        suitBuilder: reconciled.suitBuilders[card.suit],
-        center: reconciled.cardContentBuilders[card.suit][card.value],
+        valueTextStyle: reconciled.suitStyles[card.suit].style,
+        suitBuilder: reconciled.suitStyles[card.suit].builder,
+        center:
+            reconciled.suitStyles[card.suit].cardContentBuilders[card.value],
       );
     }
 

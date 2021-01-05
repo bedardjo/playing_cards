@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 import 'package:playing_cards/src/model/suit.dart';
-import 'package:playing_cards/src/util/card-aspect-ratio.dart';
 import 'package:playing_cards/src/views/playing-card-view-style.dart';
 import 'package:playing_cards/src/views/rank-card-center.dart';
 import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
@@ -116,68 +115,63 @@ Map<CardValue, Widget Function(BuildContext context)> getContentBuilders(
 }
 
 PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
-    suitBuilders: defaultSuitBuilders,
-    cardContentBuilders: {
-      Suit.clubs:
-          getContentBuilders(Suit.clubs, defaultSuitBuilders[Suit.clubs], null),
-      Suit.diamonds: getContentBuilders(
-          Suit.diamonds, defaultSuitBuilders[Suit.diamonds], null),
-      Suit.hearts: getContentBuilders(
-          Suit.hearts, defaultSuitBuilders[Suit.hearts], null),
-      Suit.spades: getContentBuilders(
-          Suit.spades, defaultSuitBuilders[Suit.spades], null),
+    suitStyles: {
+      Suit.clubs: SuitStyle(
+          builder: defaultSuitBuilders[Suit.clubs],
+          style: TextStyle(fontSize: 12, color: Colors.black),
+          cardContentBuilders: getContentBuilders(
+              Suit.clubs, defaultSuitBuilders[Suit.clubs], null)),
+      Suit.hearts: SuitStyle(
+          builder: defaultSuitBuilders[Suit.hearts],
+          style: TextStyle(fontSize: 12, color: Colors.red),
+          cardContentBuilders: getContentBuilders(
+              Suit.hearts, defaultSuitBuilders[Suit.hearts], null)),
+      Suit.diamonds: SuitStyle(
+          builder: defaultSuitBuilders[Suit.diamonds],
+          style: TextStyle(fontSize: 12, color: Colors.red),
+          cardContentBuilders: getContentBuilders(
+              Suit.diamonds, defaultSuitBuilders[Suit.diamonds], null)),
+      Suit.spades: SuitStyle(
+          builder: defaultSuitBuilders[Suit.spades],
+          style: TextStyle(fontSize: 12, color: Colors.black),
+          cardContentBuilders: getContentBuilders(
+              Suit.spades, defaultSuitBuilders[Suit.spades], null))
     },
-    textColor: {
-      Suit.clubs: Colors.black,
-      Suit.diamonds: Colors.red,
-      Suit.hearts: Colors.red,
-      Suit.spades: Colors.black
-    },
-    textStyle: TextStyle(fontSize: 12),
     cardBackContentBuilder: (BuildContext context) => Image.asset(
           "assets/card_imagery/back_001.png",
           fit: BoxFit.fill,
           package: 'playing_cards',
         ));
 
+SuitStyle _reconcileSuitStyle(
+    Suit suit, SuitStyle defaultSuitStyle, SuitStyle suitStyle) {
+  Widget Function(BuildContext context) builder =
+      suitStyle.builder ?? defaultSuitStyle.builder;
+  Map<CardValue, Widget Function(BuildContext context)> valueBuilders =
+      getContentBuilders(suit, builder, suitStyle.cardContentBuilders);
+  return SuitStyle(
+      builder: builder,
+      style: suitStyle.style ?? defaultSuitStyle.style,
+      cardContentBuilders: valueBuilders);
+}
+
 PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
   if (style == null) {
     return defaultPlayingCardStyles;
   }
-  Map<Suit, Widget Function(BuildContext)> suitBuilders = {};
-  Map<Suit, Map<CardValue, Widget Function(BuildContext context)>>
-      contentBuilders = {};
-  Map<Suit, Color> textColor = {};
+  Map<Suit, SuitStyle> suitStyles = {};
   for (Suit suit in Suit.values) {
-    suitBuilders[suit] =
-        style.suitBuilders != null && style.suitBuilders.containsKey(suit)
-            ? style.suitBuilders[suit]
-            : defaultPlayingCardStyles.suitBuilders[suit];
-    textColor[suit] =
-        style.textColor != null && style.textColor.containsKey(suit)
-            ? style.textColor[suit]
-            : defaultPlayingCardStyles.textColor[suit];
-    contentBuilders[suit] = getContentBuilders(
-        suit,
-        suitBuilders[suit],
-        style.cardContentBuilders != null &&
-                style.cardContentBuilders.containsKey(suit)
-            ? style.cardContentBuilders[suit]
-            : null);
+    suitStyles[suit] =
+        style.suitStyles != null && style.suitStyles.containsKey(suit)
+            ? _reconcileSuitStyle(
+                suit,
+                defaultPlayingCardStyles.suitStyles[suit],
+                style.suitStyles[suit])
+            : defaultPlayingCardStyles.suitStyles[suit];
   }
-  TextStyle ts = style.textStyle;
-  if (ts == null) {
-    ts = defaultPlayingCardStyles.textStyle;
-  } else if (ts.fontSize == null) {
-    ts = ts.copyWith(fontSize: 12);
-  }
+
   return PlayingCardViewStyle(
-      suitBuilders: suitBuilders,
-      cardContentBuilders: contentBuilders,
-      textColor: textColor,
-      textStyle: style.textStyle == null
-          ? defaultPlayingCardStyles.textStyle
-          : style.textStyle,
+      suitStyles: suitStyles,
       cardBackContentBuilder: style.cardBackContentBuilder == null
           ? defaultPlayingCardStyles.cardBackContentBuilder
           : style.cardBackContentBuilder);
