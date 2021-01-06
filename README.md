@@ -49,7 +49,7 @@ Container(
   child: SingleChildScrollView(
     scrollDirection: Axis.horizontal,
     child: Row(
-      children: deck.map((e) => PlayingCardView(card: e)).toList(),
+      children: deck.map((e) => PlayingCardView(card: e, style: myCardStyles)).toList(),
     ),
   ),
 ),
