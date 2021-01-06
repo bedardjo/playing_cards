@@ -1,3 +1,7 @@
+## [0.1.3+4] - 2021-01-06
+
+- Improved documentation.
+
 ## [0.1.2+3] - 2021-01-05
 
 - Improve the way styles work. Readme example for flat fan.
