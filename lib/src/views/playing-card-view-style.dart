@@ -17,6 +17,8 @@ class SuitStyle {
   final Map<CardValue, Widget Function(BuildContext context)>
       cardContentBuilders;
 
+  // Creates a suit style. All parameters are optional and will fall back
+  // to the default.
   SuitStyle({this.builder, this.style, this.cardContentBuilders});
 }
 
@@ -31,5 +33,6 @@ class PlayingCardViewStyle {
   // The back of the card.
   final Widget Function(BuildContext context) cardBackContentBuilder;
 
+  // Creates a style. One style can be used for an entire deck.
   const PlayingCardViewStyle({this.suitStyles, this.cardBackContentBuilder});
 }

@@ -13,12 +13,17 @@ import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
 // Card content is rendered based on passed in style. Default styles are
 // provided, which use imagery from https://commons.wikimedia.org/wiki/Category:SVG_playing_cards
 class PlayingCardView extends StatelessWidget {
+  // The card being rendered. This field is required.
   final PlayingCard card;
+  // Optional style to customize the look of the card.
   final PlayingCardViewStyle style;
 
+  // If true, only the back of the card is shown.
   final bool showBack;
 
+  // These fields are passed to the underlying material card.
   final ShapeBorder shape;
+  // These fields are passed to the underlying material card.
   final double elevation;
 
   // Card is required. Style can be provided to override as little or as much

@@ -5,8 +5,11 @@ import 'package:flutter/widgets.dart';
 // and an even space exists between them. Note that if enough horizontal space
 // is provided, the children will not overlap at all.
 class FlatCardFan extends StatelessWidget {
+  // Children of the flat fan. Will be arrayed evenly (and potentially stacked) across the width.
+  // Renders from first to last, so the last child will be on top.
   final List<Widget> children;
 
+  // Creates a flat card fan.
   FlatCardFan({@required this.children});
 
   @override
