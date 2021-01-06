@@ -2,7 +2,7 @@ import 'package:playing_cards/playing_cards.dart';
 import 'package:playing_cards/src/model/playing-card.dart';
 import 'package:playing_cards/src/model/suit.dart';
 
-// Convenience method for generating a 52 card deck.
+/// Generates a standard 52 card deck.
 List<PlayingCard> standardFiftyTwoCardDeck() {
   List<PlayingCard> cards = [];
   for (Suit suit in Suit.values) {

@@ -1,4 +1,4 @@
-// Thirteen standard card ranks.
+/// Thirteen standard card ranks.
 enum CardValue {
   two,
   three,
