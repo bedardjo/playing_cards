@@ -1,3 +1,7 @@
+## [0.1.4+5] - 2021-01-06
+
+- Fix readme bug.
+
 ## [0.1.3+4] - 2021-01-06
 
 - Improved documentation.
