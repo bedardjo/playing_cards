@@ -1,3 +1,7 @@
+## [0.1.5+6] - 2021-01-07
+
+- Link to video for those who don't enjoy reading.
+
 ## [0.1.4+5] - 2021-01-06
 
 - Fix readme bug.
