@@ -6,6 +6,8 @@ The `playing_cards` package for Flutter allows you to easily render playing card
 
 ![](https://raw.githubusercontent.com/bedardjo/playing_cards/master/readme_images/default_cards.png)
 
+Here's a quick video overview video if you don't like reading :-) https://www.youtube.com/watch?v=f9tOu972nhI
+
 To import:
 
 ```dart
