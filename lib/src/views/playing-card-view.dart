@@ -21,22 +21,22 @@ class PlayingCardView extends StatelessWidget {
   final PlayingCard card;
 
   /// Optional style to customize the look of the card.
-  final PlayingCardViewStyle style;
+  final PlayingCardViewStyle? style;
 
   /// If true, only the back of the card is shown.
   final bool showBack;
 
   /// These fields are passed to the underlying material card.
-  final ShapeBorder shape;
+  final ShapeBorder? shape;
 
   /// These fields are passed to the underlying material card.
-  final double elevation;
+  final double? elevation;
 
   /// Card is required. Style can be provided to override as little or as much
   /// of the cards look as you so choose.
   const PlayingCardView(
-      {Key key,
-      @required this.card,
+      {Key? key,
+      required this.card,
       this.style,
       this.showBack = false,
       this.shape,
@@ -48,14 +48,14 @@ class PlayingCardView extends StatelessWidget {
     PlayingCardViewStyle reconciled = reconcileStyle(style);
     Widget cardBody;
     if (showBack) {
-      cardBody = reconciled.cardBackContentBuilder(context);
+      cardBody = reconciled.cardBackContentBuilder!(context);
     } else {
       cardBody = PlayingCardContentView(
         valueText: card.value.shortName,
-        valueTextStyle: reconciled.suitStyles[card.suit].style,
-        suitBuilder: reconciled.suitStyles[card.suit].builder,
+        valueTextStyle: reconciled.suitStyles![card.suit]!.style,
+        suitBuilder: reconciled.suitStyles![card.suit]!.builder,
         center:
-            reconciled.suitStyles[card.suit].cardContentBuilders[card.value],
+            reconciled.suitStyles![card.suit]!.cardContentBuilders![card.value],
       );
     }
 

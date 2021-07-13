@@ -4,13 +4,13 @@ import 'package:playing_cards/src/util/card-aspect-ratio.dart';
 import 'package:playing_cards/src/util/get-good-font-size.dart';
 
 class PlayingCardContentView extends StatelessWidget {
-  final String valueText;
-  final TextStyle valueTextStyle;
-  final Widget Function(BuildContext context) suitBuilder;
-  final Widget Function(BuildContext context) center;
+  final String? valueText;
+  final TextStyle? valueTextStyle;
+  final Widget Function(BuildContext context)? suitBuilder;
+  final Widget Function(BuildContext context)? center;
 
   const PlayingCardContentView(
-      {Key key,
+      {Key? key,
       this.valueText,
       this.valueTextStyle,
       this.suitBuilder,
@@ -35,22 +35,22 @@ class PlayingCardContentView extends StatelessWidget {
         double suitHeight = height * 0.160714;
         double labelSuitHeight = suitHeight / 2.0;
 
-        TextStyle ts = valueTextStyle.copyWith(
-            fontSize: getGoodFontSize("10", valueTextStyle, sideSpace * .9));
+        TextStyle ts = valueTextStyle!.copyWith(
+            fontSize: getGoodFontSize("10", valueTextStyle!, sideSpace * .9));
         return Stack(children: [
           Align(
               alignment: Alignment(0, 0),
               child: Container(
                   width: innerWidth,
                   height: innerHeight,
-                  child: center(context))),
+                  child: center!(context))),
           Positioned(
               left: 0,
               top: height * 0.035714,
               width: sideSpace,
               height: labelHeight,
               child: Text(
-                valueText,
+                valueText!,
                 style: ts,
                 maxLines: 1,
                 softWrap: false,
@@ -62,7 +62,7 @@ class PlayingCardContentView extends StatelessWidget {
               bottom: height * 0.035714 + labelHeight + height * .01,
               width: sideSpace,
               height: labelSuitHeight,
-              child: RotatedBox(quarterTurns: 2, child: suitBuilder(context))),
+              child: RotatedBox(quarterTurns: 2, child: suitBuilder!(context))),
           Positioned(
               right: 0,
               bottom: height * 0.035714,
@@ -71,7 +71,7 @@ class PlayingCardContentView extends StatelessWidget {
               child: RotatedBox(
                   quarterTurns: 2,
                   child: Text(
-                    valueText,
+                    valueText!,
                     style: ts,
                     maxLines: 1,
                     softWrap: false,
@@ -83,7 +83,7 @@ class PlayingCardContentView extends StatelessWidget {
               top: height * 0.035714 + labelHeight + height * .01,
               width: sideSpace,
               height: labelSuitHeight,
-              child: suitBuilder(context)),
+              child: suitBuilder!(context)),
         ]);
       });
 }

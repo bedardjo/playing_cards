@@ -1,21 +1,21 @@
 import 'package:flutter/widgets.dart';
 
 class RankCardCenter extends StatelessWidget {
-  final int rank;
-  final Widget Function(BuildContext context) suitBuilder;
+  final int? rank;
+  final Widget Function(BuildContext context)? suitBuilder;
 
-  const RankCardCenter({Key key, this.rank, this.suitBuilder})
+  const RankCardCenter({Key? key, this.rank, this.suitBuilder})
       : super(key: key);
 
   Widget sideColumn(Widget suit, Widget uSuit) {
-    if (rank < 4) {
+    if (rank! < 4) {
       return Column(children: []);
-    } else if (rank < 6) {
+    } else if (rank! < 6) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [suit, uSuit],
       );
-    } else if (rank < 9) {
+    } else if (rank! < 9) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [suit, suit, uSuit],
@@ -64,7 +64,7 @@ class RankCardCenter extends StatelessWidget {
       LayoutBuilder(builder: (context, constraints) {
         double suitHeight = constraints.maxHeight / 5;
         Widget suitWidget =
-            Container(height: suitHeight, child: suitBuilder(context));
+            Container(height: suitHeight, child: suitBuilder!(context));
         Widget upsideDownSuitWidget =
             RotatedBox(quarterTurns: 2, child: suitWidget);
         return Row(

@@ -78,11 +78,11 @@ Map<Suit, Widget Function(BuildContext context)> defaultKingBuilders = {
       ),
 };
 
-Map<CardValue, Widget Function(BuildContext context)> getContentBuilders(
+Map<CardValue, Widget Function(BuildContext context)?> getContentBuilders(
     Suit suit,
-    Widget Function(BuildContext context) suitBuilder,
-    Map<CardValue, Widget Function(BuildContext context)> overrides) {
-  Map<CardValue, Widget Function(BuildContext context)> contentBuilders = {};
+    Widget Function(BuildContext context)? suitBuilder,
+    Map<CardValue, Widget Function(BuildContext context)?>? overrides) {
+  Map<CardValue, Widget Function(BuildContext context)?> contentBuilders = {};
   for (CardValue val in [
     CardValue.ace,
     CardValue.two,
@@ -144,30 +144,30 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
         ));
 
 SuitStyle _reconcileSuitStyle(
-    Suit suit, SuitStyle defaultSuitStyle, SuitStyle suitStyle) {
-  Widget Function(BuildContext context) builder =
-      suitStyle.builder ?? defaultSuitStyle.builder;
-  Map<CardValue, Widget Function(BuildContext context)> valueBuilders =
+    Suit suit, SuitStyle? defaultSuitStyle, SuitStyle suitStyle) {
+  Widget Function(BuildContext context)? builder =
+      suitStyle.builder ?? defaultSuitStyle!.builder;
+  Map<CardValue, Widget Function(BuildContext context)?> valueBuilders =
       getContentBuilders(suit, builder, suitStyle.cardContentBuilders);
   return SuitStyle(
       builder: builder,
-      style: suitStyle.style ?? defaultSuitStyle.style,
+      style: suitStyle.style ?? defaultSuitStyle!.style,
       cardContentBuilders: valueBuilders);
 }
 
-PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle style) {
+PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle? style) {
   if (style == null) {
     return defaultPlayingCardStyles;
   }
-  Map<Suit, SuitStyle> suitStyles = {};
+  Map<Suit, SuitStyle?> suitStyles = {};
   for (Suit suit in Suit.values) {
     suitStyles[suit] =
-        style.suitStyles != null && style.suitStyles.containsKey(suit)
+        style.suitStyles != null && style.suitStyles!.containsKey(suit)
             ? _reconcileSuitStyle(
                 suit,
-                defaultPlayingCardStyles.suitStyles[suit],
-                style.suitStyles[suit])
-            : defaultPlayingCardStyles.suitStyles[suit];
+                defaultPlayingCardStyles.suitStyles![suit],
+                style.suitStyles![suit]!)
+            : defaultPlayingCardStyles.suitStyles![suit];
   }
 
   return PlayingCardViewStyle(
