@@ -6,76 +6,44 @@ import 'package:playing_cards/src/views/rank-card-center.dart';
 import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
 
 Map<Suit, Widget Function(BuildContext context)> defaultSuitBuilders = {
-  Suit.clubs: (context) => Image.asset(
-        "assets/card_imagery/club.png",
-        package: 'playing_cards',
-      ),
-  Suit.diamonds: (context) => Image.asset(
-        "assets/card_imagery/diamond.png",
-        package: 'playing_cards',
-      ),
-  Suit.hearts: (context) => Image.asset(
-        "assets/card_imagery/heart.png",
-        package: 'playing_cards',
-      ),
-  Suit.spades: (context) => Image.asset(
-        "assets/card_imagery/spade.png",
-        package: 'playing_cards',
-      ),
+  Suit.clubs: (context) => Image.asset("assets/card_imagery/club.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.diamonds: (context) => Image.asset("assets/card_imagery/diamond.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.hearts: (context) => Image.asset("assets/card_imagery/heart.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.spades: (context) => Image.asset("assets/card_imagery/spade.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
 };
 Map<Suit, Widget Function(BuildContext context)> defaultJackBuilders = {
-  Suit.clubs: (context) => Image.asset(
-        "assets/card_imagery/jc.png",
-        package: 'playing_cards',
-      ),
-  Suit.diamonds: (context) => Image.asset(
-        "assets/card_imagery/jd.png",
-        package: 'playing_cards',
-      ),
-  Suit.hearts: (context) => Image.asset(
-        "assets/card_imagery/jh.png",
-        package: 'playing_cards',
-      ),
-  Suit.spades: (context) => Image.asset(
-        "assets/card_imagery/js.png",
-        package: 'playing_cards',
-      ),
+  Suit.clubs: (context) => Image.asset("assets/card_imagery/jc.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.diamonds: (context) => Image.asset("assets/card_imagery/jd.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.hearts: (context) => Image.asset("assets/card_imagery/jh.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.spades: (context) => Image.asset("assets/card_imagery/js.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
 };
 Map<Suit, Widget Function(BuildContext context)> defaultQueenBuilders = {
-  Suit.clubs: (context) => Image.asset(
-        "assets/card_imagery/qc.png",
-        package: 'playing_cards',
-      ),
-  Suit.diamonds: (context) => Image.asset(
-        "assets/card_imagery/qd.png",
-        package: 'playing_cards',
-      ),
-  Suit.hearts: (context) => Image.asset(
-        "assets/card_imagery/qh.png",
-        package: 'playing_cards',
-      ),
-  Suit.spades: (context) => Image.asset(
-        "assets/card_imagery/qs.png",
-        package: 'playing_cards',
-      ),
+  Suit.clubs: (context) => Image.asset("assets/card_imagery/qc.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.diamonds: (context) => Image.asset("assets/card_imagery/qd.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.hearts: (context) => Image.asset("assets/card_imagery/qh.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.spades: (context) => Image.asset("assets/card_imagery/qs.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
 };
 Map<Suit, Widget Function(BuildContext context)> defaultKingBuilders = {
-  Suit.clubs: (context) => Image.asset(
-        "assets/card_imagery/kc.png",
-        package: 'playing_cards',
-      ),
-  Suit.diamonds: (context) => Image.asset(
-        "assets/card_imagery/kd.png",
-        package: 'playing_cards',
-      ),
-  Suit.hearts: (context) => Image.asset(
-        "assets/card_imagery/kh.png",
-        package: 'playing_cards',
-      ),
-  Suit.spades: (context) => Image.asset(
-        "assets/card_imagery/ks.png",
-        package: 'playing_cards',
-      ),
+  Suit.clubs: (context) => Image.asset("assets/card_imagery/kc.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.diamonds: (context) => Image.asset("assets/card_imagery/kd.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.hearts: (context) => Image.asset("assets/card_imagery/kh.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.spades: (context) => Image.asset("assets/card_imagery/ks.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high),
 };
 
 Map<CardValue, Widget Function(BuildContext context)?> getContentBuilders(
@@ -138,10 +106,10 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
               Suit.spades, defaultSuitBuilders[Suit.spades], null))
     },
     cardBackContentBuilder: (BuildContext context) => Image.asset(
-          "assets/card_imagery/back_001.png",
-          fit: BoxFit.fill,
-          package: 'playing_cards',
-        ));
+        "assets/card_imagery/back_001.png",
+        fit: BoxFit.fill,
+        package: 'playing_cards',
+        filterQuality: FilterQuality.high));
 
 SuitStyle _reconcileSuitStyle(
     Suit suit, SuitStyle? defaultSuitStyle, SuitStyle suitStyle) {
