@@ -1,3 +1,7 @@
+## [0.2.0+7] - 2021-07-13
+
+- Null safety and a few minor fixes.
+
 ## [0.1.5+6] - 2021-01-07
 
 - Link to video for those who don't enjoy reading.
