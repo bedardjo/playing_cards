@@ -89,3 +89,10 @@ FlatCardFan(children: [
 ```
 
 ![](https://raw.githubusercontent.com/bedardjo/playing_cards/master/readme_images/flat_stack.png)
+
+## Jokers
+
+Jokers are modelled as two joker `CardValues` (joker_1, joker_2) in a single joker `Suit`.
+
+You can use the `standardFiftyFourCardDeck()` function in deck.dart to create a deck with two Jokers.
+

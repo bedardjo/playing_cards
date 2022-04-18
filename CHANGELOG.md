@@ -1,3 +1,7 @@
+## [0.3.0+8] - 2022-04-18
+
+- Support Joker Cards.
+
 ## [0.2.0+7] - 2021-07-13
 
 - Null safety and a few minor fixes.
