@@ -43,7 +43,7 @@ class PlayingCardContentView extends StatelessWidget {
               child: Container(
                   width: innerWidth,
                   height: innerHeight,
-                  child: center!(context))),
+                  child: center != null ? center!(context) : Container())),
           Positioned(
               left: 0,
               top: height * 0.035714,

@@ -14,6 +14,7 @@ Map<Suit, Widget Function(BuildContext context)> defaultSuitBuilders = {
       package: 'playing_cards', filterQuality: FilterQuality.high),
   Suit.spades: (context) => Image.asset("assets/card_imagery/spade.png",
       package: 'playing_cards', filterQuality: FilterQuality.high),
+  Suit.joker: (context) => Container(),
 };
 Map<Suit, Widget Function(BuildContext context)> defaultJackBuilders = {
   Suit.clubs: (context) => Image.asset("assets/card_imagery/jc.png",
@@ -25,6 +26,12 @@ Map<Suit, Widget Function(BuildContext context)> defaultJackBuilders = {
   Suit.spades: (context) => Image.asset("assets/card_imagery/js.png",
       package: 'playing_cards', filterQuality: FilterQuality.high),
 };
+
+var defaultBwJokerBuilder = (context) => Image.asset("assets/card_imagery/bw_joker.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high);
+var defaultColorJokerBuilder = (context) => Image.asset("assets/card_imagery/color_joker.png",
+      package: 'playing_cards', filterQuality: FilterQuality.high); 
+
 Map<Suit, Widget Function(BuildContext context)> defaultQueenBuilders = {
   Suit.clubs: (context) => Image.asset("assets/card_imagery/qc.png",
       package: 'playing_cards', filterQuality: FilterQuality.high),
@@ -67,6 +74,12 @@ Map<CardValue, Widget Function(BuildContext context)?> getContentBuilders(
         ? overrides[val]
         : (context) => RankCardCenter(rank: val.rank, suitBuilder: suitBuilder);
   }
+  contentBuilders[CardValue.joker_1] = overrides != null && overrides.containsKey(CardValue.joker_1)
+      ? overrides[CardValue.joker_1]
+      : defaultBwJokerBuilder;
+  contentBuilders[CardValue.joker_2] = overrides != null && overrides.containsKey(CardValue.joker_2)
+      ? overrides[CardValue.joker_2]
+      : defaultColorJokerBuilder;
   contentBuilders[CardValue.jack] =
       overrides != null && overrides.containsKey(CardValue.jack)
           ? overrides[CardValue.jack]
@@ -103,7 +116,12 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
           builder: defaultSuitBuilders[Suit.spades],
           style: TextStyle(fontSize: 12, color: Colors.black),
           cardContentBuilders: getContentBuilders(
-              Suit.spades, defaultSuitBuilders[Suit.spades], null))
+              Suit.spades, defaultSuitBuilders[Suit.spades], null)),
+      Suit.joker: SuitStyle(
+          builder: defaultSuitBuilders[Suit.spades],
+          style: TextStyle(fontSize: 12, color: Colors.black),
+          cardContentBuilders: getContentBuilders(
+              Suit.joker, defaultSuitBuilders[Suit.joker], null)),
     },
     cardBackContentBuilder: (BuildContext context) => Image.asset(
         "assets/card_imagery/back_001.png",

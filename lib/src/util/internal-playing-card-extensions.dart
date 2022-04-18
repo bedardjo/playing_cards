@@ -29,6 +29,9 @@ extension CardValueExtension on CardValue {
         return "K";
       case CardValue.ace:
         return "A";
+      case CardValue.joker_1:
+      case CardValue.joker_2:
+        return "JOKER";
     }
   }
 
@@ -60,6 +63,10 @@ extension CardValueExtension on CardValue {
         return 12;
       case CardValue.king:
         return 13;
+      case CardValue.joker_1:
+        return 14;
+      case CardValue.joker_2:
+        return 15;
     }
   }
 }

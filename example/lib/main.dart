@@ -56,6 +56,8 @@ class _CardHomeViewState extends State<CardHomeView> {
               ),
             ),
         style: TextStyle(color: Colors.grey[800])),
+      Suit.joker: SuitStyle(
+        builder: (context) => Container()),
   });
 
   @override
