@@ -1,3 +1,8 @@
+
+## [0.3.1.9] - 2022-04-19
+
+- Fix king of clubs image casing issue.
+
 ## [0.3.0+8] - 2022-04-18
 
 - Support Joker Cards.
