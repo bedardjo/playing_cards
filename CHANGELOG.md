@@ -1,5 +1,5 @@
 
-## [0.3.1.9] - 2022-04-19
+## [0.3.1+9] - 2022-04-19
 
 - Fix king of clubs image casing issue.
 
