@@ -118,7 +118,7 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
           cardContentBuilders: getContentBuilders(
               Suit.spades, defaultSuitBuilders[Suit.spades], null)),
       Suit.joker: SuitStyle(
-          builder: defaultSuitBuilders[Suit.spades],
+          builder: defaultSuitBuilders[Suit.joker],
           style: TextStyle(fontSize: 12, color: Colors.black),
           cardContentBuilders: getContentBuilders(
               Suit.joker, defaultSuitBuilders[Suit.joker], null)),
