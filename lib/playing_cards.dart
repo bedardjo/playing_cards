@@ -5,3 +5,4 @@ export 'src/views/playing-card-view.dart';
 export 'src/views/playing-card-view-style.dart';
 export 'src/model/deck.dart';
 export 'src/views/flat-card-fan.dart';
+export 'src/util/card-aspect-ratio.dart';
