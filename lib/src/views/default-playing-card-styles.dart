@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
-import 'package:playing_cards/src/model/suit.dart';
-import 'package:playing_cards/src/views/playing-card-view-style.dart';
 import 'package:playing_cards/src/views/rank-card-center.dart';
 import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
 

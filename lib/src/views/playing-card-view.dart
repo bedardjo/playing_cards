@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:playing_cards/src/model/playing-card.dart';
 import 'package:playing_cards/src/util/card-aspect-ratio.dart';
 import 'package:playing_cards/src/views/default-playing-card-styles.dart';
