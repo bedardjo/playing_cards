@@ -40,7 +40,6 @@ double getGoodFontSize(String text, TextStyle style, double fitSize,
     maxFontSize = temp;
   }
 
-  // TODO: why 3 instead of 1?
   while (maxFontSize - minFontSize > 3.0) {
     bestFontSizeSoFar = (minFontSize + maxFontSize) / 2.0;
     if (bestTextSizeSoFar() < fitSize) {
