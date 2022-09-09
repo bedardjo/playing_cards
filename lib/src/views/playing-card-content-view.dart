@@ -47,13 +47,19 @@ class PlayingCardContentView extends StatelessWidget {
             softWrap: false,
             textAlign: TextAlign.center);
         Widget suit = Container(
-            height: labelSuitHeight,
-            child: suitBuilder!(context));
+          height: labelSuitHeight,
+          child: suitBuilder!(context),
+        );
         // Text has half-leaders that provide good spacing b/w label and suit
-        Widget cornerContainer = Container(width: sideSpace, child: Column(children: [label, suit]));
+        Widget cornerContainer =
+            Container(width: sideSpace, child: Column(children: [label, suit]));
 
         if (suitBesideLabel) {
-          cornerContainer = Container(child: Row(children: [label, SizedBox(width: width * 0.02), suit]));
+          cornerContainer = Container(
+            child: Row(
+              children: [label, SizedBox(width: width * 0.02), suit],
+            ),
+          );
           sideOffset = width * 0.036; // can't rely on centering in sideSpace
           innerWidth *= 0.90; // give clearance for suit across the top
           innerHeight *= 0.90; // maintain aspect ratio
