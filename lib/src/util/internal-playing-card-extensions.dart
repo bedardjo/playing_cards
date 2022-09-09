@@ -20,7 +20,7 @@ extension CardValueExtension on CardValue {
       case CardValue.nine:
         return "9";
       case CardValue.ten:
-        return "10";
+        return "I0";
       case CardValue.jack:
         return "J";
       case CardValue.queen:

@@ -1,6 +1,4 @@
 import 'package:playing_cards/playing_cards.dart';
-import 'package:playing_cards/src/model/playing-card.dart';
-import 'package:playing_cards/src/model/suit.dart';
 
 /// Generates a standard 52 card deck.
 List<PlayingCard> standardFiftyTwoCardDeck() {

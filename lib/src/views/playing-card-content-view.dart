@@ -8,13 +8,15 @@ class PlayingCardContentView extends StatelessWidget {
   final TextStyle? valueTextStyle;
   final Widget Function(BuildContext context)? suitBuilder;
   final Widget Function(BuildContext context)? center;
+  final bool? suitBesideLabel;
 
   const PlayingCardContentView(
       {Key? key,
       this.valueText,
       this.valueTextStyle,
       this.suitBuilder,
-      this.center})
+      this.center,
+      this.suitBesideLabel})
       : super(key: key);
 
   @override
@@ -31,12 +33,38 @@ class PlayingCardContentView extends StatelessWidget {
         double innerWidth = width * 1.6875 / 2.5;
         double innerHeight = height * 2.8125 / 3.5;
         double sideSpace = (width - innerWidth) / 2.0;
-        double labelHeight = height * 0.089285;
         double suitHeight = height * 0.160714;
         double labelSuitHeight = suitHeight / 2.0;
+        double sideOffset = 0;
+        double topOffset = height * 0.030714;
 
         TextStyle ts = valueTextStyle!.copyWith(
-            fontSize: getGoodFontSize("10", valueTextStyle!, sideSpace * .9));
+            fontSize: getGoodFontSize("I0", valueTextStyle!, sideSpace * .9));
+
+        Widget label = Text(valueText!,
+            style: ts,
+            maxLines: 1,
+            softWrap: false,
+            textAlign: TextAlign.center);
+        Widget suit = Container(
+          height: labelSuitHeight,
+          child: suitBuilder!(context),
+        );
+        // Text has half-leaders that provide good spacing b/w label and suit
+        Widget cornerContainer =
+            Container(width: sideSpace, child: Column(children: [label, suit]));
+
+        if (suitBesideLabel!) {
+          cornerContainer = Container(
+            child: Row(
+              children: [label, SizedBox(width: width * 0.02), suit],
+            ),
+          );
+          sideOffset = width * 0.036; // can't rely on centering in sideSpace
+          innerWidth *= 0.90; // give clearance for suit across the top
+          innerHeight *= 0.90; // maintain aspect ratio
+        }
+
         return Stack(children: [
           Align(
               alignment: Alignment(0, 0),
@@ -44,46 +72,21 @@ class PlayingCardContentView extends StatelessWidget {
                   width: innerWidth,
                   height: innerHeight,
                   child: center != null ? center!(context) : Container())),
+          // Top label and suit
           Positioned(
-              left: 0,
-              top: height * 0.035714,
-              width: sideSpace,
-              height: labelHeight,
-              child: Text(
-                valueText!,
-                style: ts,
-                maxLines: 1,
-                softWrap: false,
-                overflow: TextOverflow.visible,
-                textAlign: TextAlign.center,
-              )),
+            left: sideOffset,
+            top: topOffset,
+            child: cornerContainer,
+          ),
+          // Bottom label and suit
           Positioned(
-              right: 0,
-              bottom: height * 0.035714 + labelHeight + height * .01,
-              width: sideSpace,
-              height: labelSuitHeight,
-              child: RotatedBox(quarterTurns: 2, child: suitBuilder!(context))),
-          Positioned(
-              right: 0,
-              bottom: height * 0.035714,
-              width: sideSpace,
-              height: labelHeight,
-              child: RotatedBox(
-                  quarterTurns: 2,
-                  child: Text(
-                    valueText!,
-                    style: ts,
-                    maxLines: 1,
-                    softWrap: false,
-                    overflow: TextOverflow.visible,
-                    textAlign: TextAlign.center,
-                  ))),
-          Positioned(
-              left: 0,
-              top: height * 0.035714 + labelHeight + height * .01,
-              width: sideSpace,
-              height: labelSuitHeight,
-              child: suitBuilder!(context)),
+            right: sideOffset,
+            bottom: topOffset,
+            child: RotatedBox(
+              quarterTurns: 2,
+              child: cornerContainer,
+            ),
+          ),
         ]);
       });
 }
