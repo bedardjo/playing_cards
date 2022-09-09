@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'dart:math';
 
 /// This widget will array the passed in children in a horizontal line.
 /// The children will overlap such that the available space is filled
@@ -18,7 +19,7 @@ class FlatCardFan extends StatelessWidget {
             children.length,
             (index) => Align(
                   alignment: Alignment(
-                      -1.0 + (index / (children.length - 1)) * 2.0, 0),
+                      -1.0 + (index / max(children.length - 1, 1)) * 2.0, 0),
                   child: children[index],
                 )),
       );
