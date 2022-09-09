@@ -25,10 +25,14 @@ Map<Suit, Widget Function(BuildContext context)> defaultJackBuilders = {
       package: 'playing_cards', filterQuality: FilterQuality.high),
 };
 
-var defaultBwJokerBuilder = (context) => Image.asset("assets/card_imagery/bw_joker.png",
-      package: 'playing_cards', filterQuality: FilterQuality.high);
-var defaultColorJokerBuilder = (context) => Image.asset("assets/card_imagery/color_joker.png",
-      package: 'playing_cards', filterQuality: FilterQuality.high); 
+var defaultBwJokerBuilder = (context) => Image.asset(
+    "assets/card_imagery/bw_joker.png",
+    package: 'playing_cards',
+    filterQuality: FilterQuality.high);
+var defaultColorJokerBuilder = (context) => Image.asset(
+    "assets/card_imagery/color_joker.png",
+    package: 'playing_cards',
+    filterQuality: FilterQuality.high);
 
 Map<Suit, Widget Function(BuildContext context)> defaultQueenBuilders = {
   Suit.clubs: (context) => Image.asset("assets/card_imagery/qc.png",
@@ -72,12 +76,14 @@ Map<CardValue, Widget Function(BuildContext context)?> getContentBuilders(
         ? overrides[val]
         : (context) => RankCardCenter(rank: val.rank, suitBuilder: suitBuilder);
   }
-  contentBuilders[CardValue.joker_1] = overrides != null && overrides.containsKey(CardValue.joker_1)
-      ? overrides[CardValue.joker_1]
-      : defaultBwJokerBuilder;
-  contentBuilders[CardValue.joker_2] = overrides != null && overrides.containsKey(CardValue.joker_2)
-      ? overrides[CardValue.joker_2]
-      : defaultColorJokerBuilder;
+  contentBuilders[CardValue.joker_1] =
+      overrides != null && overrides.containsKey(CardValue.joker_1)
+          ? overrides[CardValue.joker_1]
+          : defaultBwJokerBuilder;
+  contentBuilders[CardValue.joker_2] =
+      overrides != null && overrides.containsKey(CardValue.joker_2)
+          ? overrides[CardValue.joker_2]
+          : defaultColorJokerBuilder;
   contentBuilders[CardValue.jack] =
       overrides != null && overrides.containsKey(CardValue.jack)
           ? overrides[CardValue.jack]
@@ -125,7 +131,8 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
         "assets/card_imagery/back_001.png",
         fit: BoxFit.fill,
         package: 'playing_cards',
-        filterQuality: FilterQuality.high));
+        filterQuality: FilterQuality.high),
+    suitBesideLabel: false);
 
 SuitStyle _reconcileSuitStyle(
     Suit suit, SuitStyle? defaultSuitStyle, SuitStyle suitStyle) {
@@ -158,5 +165,6 @@ PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle? style) {
       suitStyles: suitStyles,
       cardBackContentBuilder: style.cardBackContentBuilder == null
           ? defaultPlayingCardStyles.cardBackContentBuilder
-          : style.cardBackContentBuilder);
+          : style.cardBackContentBuilder,
+      suitBesideLabel: style.suitBesideLabel ?? false);
 }

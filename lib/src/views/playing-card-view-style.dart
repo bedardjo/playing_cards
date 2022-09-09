@@ -33,6 +33,12 @@ class PlayingCardViewStyle {
   /// The back of the card.
   final Widget Function(BuildContext context)? cardBackContentBuilder;
 
+  /// True if the suit should appear to the right of the label in the corder
+  /// of the card, false if the suit should appear below the label.  Defaults
+  /// to false.
+  final bool? suitBesideLabel;
+
   /// Creates a style. One style can be used for an entire deck.
-  const PlayingCardViewStyle({this.suitStyles, this.cardBackContentBuilder});
+  const PlayingCardViewStyle(
+      {this.suitStyles, this.cardBackContentBuilder, this.suitBesideLabel});
 }

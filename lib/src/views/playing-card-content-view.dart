@@ -8,20 +8,20 @@ class PlayingCardContentView extends StatelessWidget {
   final TextStyle? valueTextStyle;
   final Widget Function(BuildContext context)? suitBuilder;
   final Widget Function(BuildContext context)? center;
+  final bool? suitBesideLabel;
 
   const PlayingCardContentView(
       {Key? key,
       this.valueText,
       this.valueTextStyle,
       this.suitBuilder,
-      this.center})
+      this.center,
+      this.suitBesideLabel})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) =>
       LayoutBuilder(builder: (context, constraints) {
-        bool suitBesideLabel = false;
-
         double width = constraints.hasBoundedWidth
             ? constraints.maxWidth
             : constraints.maxHeight * playingCardAspectRatio;
@@ -54,7 +54,7 @@ class PlayingCardContentView extends StatelessWidget {
         Widget cornerContainer =
             Container(width: sideSpace, child: Column(children: [label, suit]));
 
-        if (suitBesideLabel) {
+        if (suitBesideLabel!) {
           cornerContainer = Container(
             child: Row(
               children: [label, SizedBox(width: width * 0.02), suit],

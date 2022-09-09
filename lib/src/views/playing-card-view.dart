@@ -55,6 +55,7 @@ class PlayingCardView extends StatelessWidget {
         suitBuilder: reconciled.suitStyles![card.suit]!.builder,
         center:
             reconciled.suitStyles![card.suit]!.cardContentBuilders![card.value],
+        suitBesideLabel: reconciled.suitBesideLabel,
       );
     }
 
