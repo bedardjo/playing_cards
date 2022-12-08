@@ -59,6 +59,10 @@ Container(
 
 ![](https://raw.githubusercontent.com/bedardjo/playing_cards/master/readme_images/customized_cards.png)
 
+`PlayingCardViewStyle` also accepts a `suitBesideLabel: true` option to render the suit next to the rank, instead of below:
+
+<img src="https://raw.githubusercontent.com/bedardjo/playing_cards/master/readme_images/suit_beside_label.png" width="200">
+
 A flat fan widget is also provided for the common use cases of fanning cards out horizontally:
 
 ```dart
