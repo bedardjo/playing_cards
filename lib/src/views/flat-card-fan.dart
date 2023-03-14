@@ -10,7 +10,7 @@ class FlatCardFan extends StatelessWidget {
   final List<Widget> children;
 
   /// Creates a flat card fan.
-  FlatCardFan({required this.children});
+  const FlatCardFan({Key? key, required this.children}) : super(key: key);
 
   @override
   Widget build(Object context) => Stack(

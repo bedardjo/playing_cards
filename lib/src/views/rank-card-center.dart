@@ -9,7 +9,7 @@ class RankCardCenter extends StatelessWidget {
 
   Widget sideColumn(Widget suit, Widget uSuit) {
     if (rank! < 4) {
-      return Column(children: []);
+      return Column(children: const []);
     } else if (rank! < 6) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +43,7 @@ class RankCardCenter extends StatelessWidget {
     } else if (rank == 7) {
       return Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [suit, SizedBox()]);
+          children: [suit, const SizedBox()]);
     } else if (rank == 8) {
       return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -55,7 +55,7 @@ class RankCardCenter extends StatelessWidget {
     }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [],
+      children: const [],
     );
   }
 
@@ -64,7 +64,7 @@ class RankCardCenter extends StatelessWidget {
       LayoutBuilder(builder: (context, constraints) {
         double suitHeight = constraints.maxHeight / 5;
         Widget suitWidget =
-            Container(height: suitHeight, child: suitBuilder!(context));
+            SizedBox(height: suitHeight, child: suitBuilder!(context));
         Widget upsideDownSuitWidget =
             RotatedBox(quarterTurns: 2, child: suitWidget);
         return Row(

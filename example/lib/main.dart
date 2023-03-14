@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 
 void main() {
-  runApp(MaterialApp(home: CardHomeView()));
+  runApp(const MaterialApp(home: CardHomeView()));
 }
 
 class CardHomeView extends StatefulWidget {
-  CardHomeView({Key key}) : super(key: key);
+  const CardHomeView({Key key}) : super(key: key);
 
   @override
-  _CardHomeViewState createState() => _CardHomeViewState();
+  State<CardHomeView> createState() => _CardHomeViewState();
 }
 
 class _CardHomeViewState extends State<CardHomeView> {
@@ -21,7 +21,7 @@ class _CardHomeViewState extends State<CardHomeView> {
   // implementation.
   PlayingCardViewStyle myCardStyles = PlayingCardViewStyle(suitStyles: {
     Suit.spades: SuitStyle(
-        builder: (context) => FittedBox(
+        builder: (context) => const FittedBox(
               fit: BoxFit.fitHeight,
               child: Text(
                 "♠",
@@ -30,25 +30,25 @@ class _CardHomeViewState extends State<CardHomeView> {
             ),
         style: TextStyle(color: Colors.grey[800])),
     Suit.hearts: SuitStyle(
-        builder: (context) => FittedBox(
+        builder: (context) => const FittedBox(
               fit: BoxFit.fitHeight,
               child: Text(
                 "♥",
                 style: TextStyle(fontSize: 500),
               ),
             ),
-        style: TextStyle(color: Colors.red)),
+        style: const TextStyle(color: Colors.red)),
     Suit.diamonds: SuitStyle(
-        builder: (context) => FittedBox(
+        builder: (context) => const FittedBox(
               fit: BoxFit.fitHeight,
               child: Text(
                 "♦",
                 style: TextStyle(fontSize: 500),
               ),
             ),
-        style: TextStyle(color: Colors.red)),
+        style: const TextStyle(color: Colors.red)),
     Suit.clubs: SuitStyle(
-        builder: (context) => FittedBox(
+        builder: (context) => const FittedBox(
               fit: BoxFit.fitHeight,
               child: Text(
                 "♣",
@@ -56,8 +56,7 @@ class _CardHomeViewState extends State<CardHomeView> {
               ),
             ),
         style: TextStyle(color: Colors.grey[800])),
-      Suit.joker: SuitStyle(
-        builder: (context) => Container()),
+    Suit.joker: SuitStyle(builder: (context) => Container()),
   });
 
   @override

@@ -103,27 +103,27 @@ PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
     suitStyles: {
       Suit.clubs: SuitStyle(
           builder: defaultSuitBuilders[Suit.clubs],
-          style: TextStyle(fontSize: 12, color: Colors.black),
+          style: const TextStyle(fontSize: 12, color: Colors.black),
           cardContentBuilders: getContentBuilders(
               Suit.clubs, defaultSuitBuilders[Suit.clubs], null)),
       Suit.hearts: SuitStyle(
           builder: defaultSuitBuilders[Suit.hearts],
-          style: TextStyle(fontSize: 12, color: Colors.red),
+          style: const TextStyle(fontSize: 12, color: Colors.red),
           cardContentBuilders: getContentBuilders(
               Suit.hearts, defaultSuitBuilders[Suit.hearts], null)),
       Suit.diamonds: SuitStyle(
           builder: defaultSuitBuilders[Suit.diamonds],
-          style: TextStyle(fontSize: 12, color: Colors.red),
+          style: const TextStyle(fontSize: 12, color: Colors.red),
           cardContentBuilders: getContentBuilders(
               Suit.diamonds, defaultSuitBuilders[Suit.diamonds], null)),
       Suit.spades: SuitStyle(
           builder: defaultSuitBuilders[Suit.spades],
-          style: TextStyle(fontSize: 12, color: Colors.black),
+          style: const TextStyle(fontSize: 12, color: Colors.black),
           cardContentBuilders: getContentBuilders(
               Suit.spades, defaultSuitBuilders[Suit.spades], null)),
       Suit.joker: SuitStyle(
           builder: defaultSuitBuilders[Suit.joker],
-          style: TextStyle(fontSize: 12, color: Colors.black),
+          style: const TextStyle(fontSize: 12, color: Colors.black),
           cardContentBuilders: getContentBuilders(
               Suit.joker, defaultSuitBuilders[Suit.joker], null)),
     },
@@ -163,8 +163,6 @@ PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle? style) {
 
   return PlayingCardViewStyle(
       suitStyles: suitStyles,
-      cardBackContentBuilder: style.cardBackContentBuilder == null
-          ? defaultPlayingCardStyles.cardBackContentBuilder
-          : style.cardBackContentBuilder,
+      cardBackContentBuilder: style.cardBackContentBuilder ?? defaultPlayingCardStyles.cardBackContentBuilder,
       suitBesideLabel: style.suitBesideLabel ?? false);
 }
