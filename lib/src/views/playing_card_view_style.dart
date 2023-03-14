@@ -39,6 +39,9 @@ class PlayingCardViewStyle {
   final bool? suitBesideLabel;
 
   /// Creates a style. One style can be used for an entire deck.
-  const PlayingCardViewStyle(
-      {this.suitStyles, this.cardBackContentBuilder, this.suitBesideLabel});
+  const PlayingCardViewStyle({
+    this.suitStyles,
+    this.cardBackContentBuilder,
+    this.suitBesideLabel,
+  });
 }

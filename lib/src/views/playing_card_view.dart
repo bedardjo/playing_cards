@@ -33,14 +33,14 @@ class PlayingCardView extends StatelessWidget {
 
   /// Card is required. Style can be provided to override as little or as much
   /// of the cards look as you so choose.
-  const PlayingCardView(
-      {Key? key,
-      required this.card,
-      this.style,
-      this.showBack = false,
-      this.shape,
-      this.elevation})
-      : super(key: key);
+  const PlayingCardView({
+    Key? key,
+    required this.card,
+    this.style,
+    this.showBack = false,
+    this.shape,
+    this.elevation,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +60,13 @@ class PlayingCardView extends StatelessWidget {
     }
 
     return AspectRatio(
-        aspectRatio: playingCardAspectRatio,
-        child: Card(
-            shape: shape,
-            elevation: elevation,
-            clipBehavior: Clip.antiAlias,
-            child: cardBody));
+      aspectRatio: playingCardAspectRatio,
+      child: Card(
+        shape: shape,
+        elevation: elevation,
+        clipBehavior: Clip.antiAlias,
+        child: cardBody,
+      ),
+    );
   }
 }

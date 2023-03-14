@@ -10,18 +10,19 @@ class PlayingCardContentView extends StatelessWidget {
   final Widget Function(BuildContext context)? center;
   final bool? suitBesideLabel;
 
-  const PlayingCardContentView(
-      {Key? key,
-      this.valueText,
-      this.valueTextStyle,
-      this.suitBuilder,
-      this.center,
-      this.suitBesideLabel})
-      : super(key: key);
+  const PlayingCardContentView({
+    Key? key,
+    this.valueText,
+    this.valueTextStyle,
+    this.suitBuilder,
+    this.center,
+    this.suitBesideLabel,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      LayoutBuilder(builder: (context, constraints) {
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
         double width = constraints.hasBoundedWidth
             ? constraints.maxWidth
             : constraints.maxHeight * playingCardAspectRatio;
@@ -39,20 +40,25 @@ class PlayingCardContentView extends StatelessWidget {
         double topOffset = height * 0.030714;
 
         TextStyle ts = valueTextStyle!.copyWith(
-            fontSize: getGoodFontSize("I0", valueTextStyle!, sideSpace * .9));
+          fontSize: getGoodFontSize("I0", valueTextStyle!, sideSpace * .9),
+        );
 
-        Widget label = Text(valueText!,
-            style: ts,
-            maxLines: 1,
-            softWrap: false,
-            textAlign: TextAlign.center);
+        Widget label = Text(
+          valueText!,
+          style: ts,
+          maxLines: 1,
+          softWrap: false,
+          textAlign: TextAlign.center,
+        );
         Widget suit = SizedBox(
           height: labelSuitHeight,
           child: suitBuilder!(context),
         );
         // Text has half-leaders that provide good spacing b/w label and suit
-        Widget cornerContainer =
-            SizedBox(width: sideSpace, child: Column(children: [label, suit]));
+        Widget cornerContainer = SizedBox(
+          width: sideSpace,
+          child: Column(children: [label, suit]),
+        );
 
         if (suitBesideLabel!) {
           cornerContainer = Row(
@@ -63,28 +69,34 @@ class PlayingCardContentView extends StatelessWidget {
           innerHeight *= 0.90; // maintain aspect ratio
         }
 
-        return Stack(children: [
-          Align(
+        return Stack(
+          children: [
+            Align(
               alignment: const Alignment(0, 0),
               child: SizedBox(
-                  width: innerWidth,
-                  height: innerHeight,
-                  child: center != null ? center!(context) : Container())),
-          // Top label and suit
-          Positioned(
-            left: sideOffset,
-            top: topOffset,
-            child: cornerContainer,
-          ),
-          // Bottom label and suit
-          Positioned(
-            right: sideOffset,
-            bottom: topOffset,
-            child: RotatedBox(
-              quarterTurns: 2,
+                width: innerWidth,
+                height: innerHeight,
+                child: center != null ? center!(context) : Container(),
+              ),
+            ),
+            // Top label and suit
+            Positioned(
+              left: sideOffset,
+              top: topOffset,
               child: cornerContainer,
             ),
-          ),
-        ]);
-      });
+            // Bottom label and suit
+            Positioned(
+              right: sideOffset,
+              bottom: topOffset,
+              child: RotatedBox(
+                quarterTurns: 2,
+                child: cornerContainer,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

@@ -31,27 +31,34 @@ class RankCardCenter extends StatelessWidget {
   Widget middleColumn(Widget suit, Widget uSuit) {
     if (rank == 1 || rank == 5 || rank == 9) {
       return Column(
-          mainAxisAlignment: MainAxisAlignment.center, children: [suit]);
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [suit],
+      );
     } else if (rank == 2) {
       return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [suit, uSuit]);
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [suit, uSuit],
+      );
     } else if (rank == 3) {
       return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [suit, suit, uSuit]);
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [suit, suit, uSuit],
+      );
     } else if (rank == 7) {
       return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [suit, const SizedBox()]);
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [suit, const SizedBox()],
+      );
     } else if (rank == 8) {
       return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [suit, uSuit]);
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [suit, uSuit],
+      );
     } else if (rank == 10) {
       return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [suit, uSuit]);
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [suit, uSuit],
+      );
     }
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -60,13 +67,18 @@ class RankCardCenter extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      LayoutBuilder(builder: (context, constraints) {
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
         double suitHeight = constraints.maxHeight / 5;
-        Widget suitWidget =
-            SizedBox(height: suitHeight, child: suitBuilder!(context));
-        Widget upsideDownSuitWidget =
-            RotatedBox(quarterTurns: 2, child: suitWidget);
+        Widget suitWidget = SizedBox(
+          height: suitHeight,
+          child: suitBuilder!(context),
+        );
+        Widget upsideDownSuitWidget = RotatedBox(
+          quarterTurns: 2,
+          child: suitWidget,
+        );
         return Row(
           children: [
             Expanded(child: sideColumn(suitWidget, upsideDownSuitWidget)),
@@ -74,5 +86,7 @@ class RankCardCenter extends StatelessWidget {
             Expanded(child: sideColumn(suitWidget, upsideDownSuitWidget))
           ],
         );
-      });
+      },
+    );
+  }
 }
