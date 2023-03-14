@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:playing_cards/src/util/card-aspect-ratio.dart';
-import 'package:playing_cards/src/util/get-good-font-size.dart';
+import 'package:playing_cards/src/util/card_aspect_ratio.dart';
+import 'package:playing_cards/src/util/get_good_font_size.dart';
 
 class PlayingCardContentView extends StatelessWidget {
   final String? valueText;

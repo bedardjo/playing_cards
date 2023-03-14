@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:playing_cards/src/model/card-value.dart';
+import 'package:playing_cards/src/model/card_value.dart';
 import 'package:playing_cards/src/model/suit.dart';
 
 /// These styles are specific to a suit.

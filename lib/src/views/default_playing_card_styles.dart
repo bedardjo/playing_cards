@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
-import 'package:playing_cards/src/views/rank-card-center.dart';
-import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
+import 'package:playing_cards/src/views/rank_card_center.dart';
+import 'package:playing_cards/src/util/internal_playing_card_extensions.dart';
 
 Map<Suit, Widget Function(BuildContext context)> defaultSuitBuilders = {
   Suit.clubs: (context) => Image.asset("assets/card_imagery/club.png",
@@ -163,6 +163,7 @@ PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle? style) {
 
   return PlayingCardViewStyle(
       suitStyles: suitStyles,
-      cardBackContentBuilder: style.cardBackContentBuilder ?? defaultPlayingCardStyles.cardBackContentBuilder,
+      cardBackContentBuilder: style.cardBackContentBuilder ??
+          defaultPlayingCardStyles.cardBackContentBuilder,
       suitBesideLabel: style.suitBesideLabel ?? false);
 }

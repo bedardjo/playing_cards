@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:playing_cards/src/model/playing-card.dart';
-import 'package:playing_cards/src/util/card-aspect-ratio.dart';
-import 'package:playing_cards/src/views/default-playing-card-styles.dart';
-import 'package:playing_cards/src/views/playing-card-content-view.dart';
-import 'package:playing_cards/src/views/playing-card-view-style.dart';
-import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
+import 'package:playing_cards/src/model/playing_card.dart';
+import 'package:playing_cards/src/util/card_aspect_ratio.dart';
+import 'package:playing_cards/src/views/default_playing_card_styles.dart';
+import 'package:playing_cards/src/views/playing_card_content_view.dart';
+import 'package:playing_cards/src/views/playing_card_view_style.dart';
+import 'package:playing_cards/src/util/internal_playing_card_extensions.dart';
 
 /// Primary view for rendering cards. Use like this:
 ///
