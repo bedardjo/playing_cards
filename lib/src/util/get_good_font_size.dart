@@ -9,9 +9,10 @@ double getGoodFontSize(String text, TextStyle style, double fitWidth) {
   double bestTextWidthSoFar() {
     var bestStyleSoFar = style.copyWith(fontSize: bestFontSizeSoFar);
     var textPainter = TextPainter(
-        text: TextSpan(text: text, style: bestStyleSoFar),
-        maxLines: 1,
-        textDirection: TextDirection.ltr);
+      text: TextSpan(text: text, style: bestStyleSoFar),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    );
     textPainter.layout(minWidth: 0, maxWidth: double.infinity);
     return textPainter.size.width;
   }

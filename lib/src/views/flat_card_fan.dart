@@ -10,19 +10,23 @@ class FlatCardFan extends StatelessWidget {
   final List<Widget> children;
 
   /// Creates a flat card fan.
-  FlatCardFan({required this.children});
+  const FlatCardFan({Key? key, required this.children}) : super(key: key);
 
   @override
-  Widget build(Object context) => Stack(
-        children: List.generate(
-            children.length,
-            (index) => Align(
-                  alignment: Alignment(
-                      children.length > 1
-                          ? -1.0 + (index / (children.length - 1)) * 2.0
-                          : 0,
-                      0),
-                  child: children[index],
-                )),
-      );
+  Widget build(Object context) {
+    return Stack(
+      children: List.generate(
+        children.length,
+        (index) => Align(
+          alignment: Alignment(
+            children.length > 1
+                ? -1.0 + (index / (children.length - 1)) * 2.0
+                : 0,
+            0,
+          ),
+          child: children[index],
+        ),
+      ),
+    );
+  }
 }

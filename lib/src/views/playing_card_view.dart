@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:playing_cards/src/model/playing-card.dart';
-import 'package:playing_cards/src/util/card-aspect-ratio.dart';
-import 'package:playing_cards/src/views/default-playing-card-styles.dart';
-import 'package:playing_cards/src/views/playing-card-content-view.dart';
-import 'package:playing_cards/src/views/playing-card-view-style.dart';
-import 'package:playing_cards/src/util/internal-playing-card-extensions.dart';
+import 'package:playing_cards/src/model/playing_card.dart';
+import 'package:playing_cards/src/util/card_aspect_ratio.dart';
+import 'package:playing_cards/src/views/default_playing_card_styles.dart';
+import 'package:playing_cards/src/views/playing_card_content_view.dart';
+import 'package:playing_cards/src/views/playing_card_view_style.dart';
+import 'package:playing_cards/src/util/internal_playing_card_extensions.dart';
 
 /// Primary view for rendering cards. Use like this:
 ///
@@ -33,14 +33,14 @@ class PlayingCardView extends StatelessWidget {
 
   /// Card is required. Style can be provided to override as little or as much
   /// of the cards look as you so choose.
-  const PlayingCardView(
-      {Key? key,
-      required this.card,
-      this.style,
-      this.showBack = false,
-      this.shape,
-      this.elevation})
-      : super(key: key);
+  const PlayingCardView({
+    Key? key,
+    required this.card,
+    this.style,
+    this.showBack = false,
+    this.shape,
+    this.elevation,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +60,13 @@ class PlayingCardView extends StatelessWidget {
     }
 
     return AspectRatio(
-        aspectRatio: playingCardAspectRatio,
-        child: Card(
-            shape: shape,
-            elevation: elevation,
-            clipBehavior: Clip.antiAlias,
-            child: cardBody));
+      aspectRatio: playingCardAspectRatio,
+      child: Card(
+        shape: shape,
+        elevation: elevation,
+        clipBehavior: Clip.antiAlias,
+        child: cardBody,
+      ),
+    );
   }
 }

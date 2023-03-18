@@ -1,4 +1,4 @@
-import 'package:playing_cards/src/model/card-value.dart';
+import 'package:playing_cards/src/model/card_value.dart';
 import 'package:playing_cards/src/model/suit.dart';
 
 // Simple card model.

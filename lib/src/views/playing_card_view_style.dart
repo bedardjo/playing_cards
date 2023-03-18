@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:playing_cards/src/model/card-value.dart';
+import 'package:playing_cards/src/model/card_value.dart';
 import 'package:playing_cards/src/model/suit.dart';
 
 /// These styles are specific to a suit.
@@ -39,6 +39,9 @@ class PlayingCardViewStyle {
   final bool? suitBesideLabel;
 
   /// Creates a style. One style can be used for an entire deck.
-  const PlayingCardViewStyle(
-      {this.suitStyles, this.cardBackContentBuilder, this.suitBesideLabel});
+  const PlayingCardViewStyle({
+    this.suitStyles,
+    this.cardBackContentBuilder,
+    this.suitBesideLabel,
+  });
 }
