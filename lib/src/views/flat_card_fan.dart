@@ -20,7 +20,7 @@ class FlatCardFan extends StatelessWidget {
         (index) => Align(
           alignment: Alignment(
             children.length > 1
-                ? -1.0 + (index / (children.length - 1)) * 3.0
+                ? -1.0 + (index / (children.length - 1)) * 5.0
                 : 0,
             0,
           ),
