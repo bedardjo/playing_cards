@@ -6,7 +6,7 @@ void main() {
 }
 
 class CardHomeView extends StatefulWidget {
-  const CardHomeView({Key key}) : super(key: key);
+  const CardHomeView({Key? key}) : super(key: key);
 
   @override
   State<CardHomeView> createState() => _CardHomeViewState();
@@ -87,7 +87,7 @@ class _CardHomeViewState extends State<CardHomeView> {
                     .toList(),
                 onChanged: (val) {
                   setState(() {
-                    suit = val;
+                    suit = val!;
                   });
                 },
               ),
@@ -103,7 +103,7 @@ class _CardHomeViewState extends State<CardHomeView> {
                     .toList(),
                 onChanged: (val) {
                   setState(() {
-                    value = val;
+                    value = val!;
                   });
                 },
               ),
