@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:playing_cards/playing_cards.dart';
 
 void main() {
-  runApp(const MaterialApp(home: CardHomeView()));
+  runApp(MaterialApp(
+      theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue.shade700)),
+      home: CardHomeView()));
 }
 
 class CardHomeView extends StatefulWidget {
@@ -36,7 +40,7 @@ class _CardHomeViewState extends State<CardHomeView> {
           fit: BoxFit.fitHeight,
           child: Text(
             "♥",
-            style: TextStyle(fontSize: 500),
+            style: TextStyle(fontSize: 500, color: Colors.red),
           ),
         ),
         style: const TextStyle(color: Colors.red),
@@ -46,7 +50,7 @@ class _CardHomeViewState extends State<CardHomeView> {
           fit: BoxFit.fitHeight,
           child: Text(
             "♦",
-            style: TextStyle(fontSize: 500),
+            style: TextStyle(fontSize: 500, color: Colors.red),
           ),
         ),
         style: const TextStyle(color: Colors.red),

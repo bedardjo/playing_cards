@@ -38,10 +38,17 @@ class PlayingCardViewStyle {
   /// to false.
   final bool? suitBesideLabel;
 
+  /// Surface tint color.
+  final Color? surfaceTintColor;
+
+  /// Card background color.
+  final Color? cardBackgroundColor;
+
   /// Creates a style. One style can be used for an entire deck.
-  const PlayingCardViewStyle({
-    this.suitStyles,
-    this.cardBackContentBuilder,
-    this.suitBesideLabel,
-  });
+  const PlayingCardViewStyle(
+      {this.suitStyles,
+      this.cardBackContentBuilder,
+      this.suitBesideLabel,
+      this.surfaceTintColor,
+      this.cardBackgroundColor});
 }

@@ -151,61 +151,62 @@ Map<CardValue, Widget Function(BuildContext context)?> getContentBuilders(
 }
 
 PlayingCardViewStyle defaultPlayingCardStyles = PlayingCardViewStyle(
-  suitStyles: {
-    Suit.clubs: SuitStyle(
-      builder: defaultSuitBuilders[Suit.clubs],
-      style: const TextStyle(fontSize: 12, color: Colors.black),
-      cardContentBuilders: getContentBuilders(
-        Suit.clubs,
-        defaultSuitBuilders[Suit.clubs],
-        null,
+    suitStyles: {
+      Suit.clubs: SuitStyle(
+        builder: defaultSuitBuilders[Suit.clubs],
+        style: const TextStyle(fontSize: 12, color: Colors.black),
+        cardContentBuilders: getContentBuilders(
+          Suit.clubs,
+          defaultSuitBuilders[Suit.clubs],
+          null,
+        ),
       ),
-    ),
-    Suit.hearts: SuitStyle(
-      builder: defaultSuitBuilders[Suit.hearts],
-      style: const TextStyle(fontSize: 12, color: Colors.red),
-      cardContentBuilders: getContentBuilders(
-        Suit.hearts,
-        defaultSuitBuilders[Suit.hearts],
-        null,
+      Suit.hearts: SuitStyle(
+        builder: defaultSuitBuilders[Suit.hearts],
+        style: const TextStyle(fontSize: 12, color: Colors.red),
+        cardContentBuilders: getContentBuilders(
+          Suit.hearts,
+          defaultSuitBuilders[Suit.hearts],
+          null,
+        ),
       ),
-    ),
-    Suit.diamonds: SuitStyle(
-      builder: defaultSuitBuilders[Suit.diamonds],
-      style: const TextStyle(fontSize: 12, color: Colors.red),
-      cardContentBuilders: getContentBuilders(
-        Suit.diamonds,
-        defaultSuitBuilders[Suit.diamonds],
-        null,
+      Suit.diamonds: SuitStyle(
+        builder: defaultSuitBuilders[Suit.diamonds],
+        style: const TextStyle(fontSize: 12, color: Colors.red),
+        cardContentBuilders: getContentBuilders(
+          Suit.diamonds,
+          defaultSuitBuilders[Suit.diamonds],
+          null,
+        ),
       ),
-    ),
-    Suit.spades: SuitStyle(
-      builder: defaultSuitBuilders[Suit.spades],
-      style: const TextStyle(fontSize: 12, color: Colors.black),
-      cardContentBuilders: getContentBuilders(
-        Suit.spades,
-        defaultSuitBuilders[Suit.spades],
-        null,
+      Suit.spades: SuitStyle(
+        builder: defaultSuitBuilders[Suit.spades],
+        style: const TextStyle(fontSize: 12, color: Colors.black),
+        cardContentBuilders: getContentBuilders(
+          Suit.spades,
+          defaultSuitBuilders[Suit.spades],
+          null,
+        ),
       ),
-    ),
-    Suit.joker: SuitStyle(
-      builder: defaultSuitBuilders[Suit.joker],
-      style: const TextStyle(fontSize: 12, color: Colors.black),
-      cardContentBuilders: getContentBuilders(
-        Suit.joker,
-        defaultSuitBuilders[Suit.joker],
-        null,
+      Suit.joker: SuitStyle(
+        builder: defaultSuitBuilders[Suit.joker],
+        style: const TextStyle(fontSize: 12, color: Colors.black),
+        cardContentBuilders: getContentBuilders(
+          Suit.joker,
+          defaultSuitBuilders[Suit.joker],
+          null,
+        ),
       ),
-    ),
-  },
-  cardBackContentBuilder: (BuildContext context) => Image.asset(
-    "assets/card_imagery/back_001.png",
-    fit: BoxFit.fill,
-    package: 'playing_cards',
-    filterQuality: FilterQuality.high,
-  ),
-  suitBesideLabel: false,
-);
+    },
+    cardBackContentBuilder: (BuildContext context) => Image.asset(
+          "assets/card_imagery/back_001.png",
+          fit: BoxFit.fill,
+          package: 'playing_cards',
+          filterQuality: FilterQuality.high,
+        ),
+    suitBesideLabel: false,
+    surfaceTintColor: Colors.white,
+    cardBackgroundColor: Colors.white);
 
 SuitStyle _reconcileSuitStyle(
   Suit suit,
@@ -240,9 +241,12 @@ PlayingCardViewStyle reconcileStyle(PlayingCardViewStyle? style) {
   }
 
   return PlayingCardViewStyle(
-    suitStyles: suitStyles,
-    cardBackContentBuilder: style.cardBackContentBuilder ??
-        defaultPlayingCardStyles.cardBackContentBuilder,
-    suitBesideLabel: style.suitBesideLabel ?? false,
-  );
+      suitStyles: suitStyles,
+      cardBackContentBuilder: style.cardBackContentBuilder ??
+          defaultPlayingCardStyles.cardBackContentBuilder,
+      suitBesideLabel: style.suitBesideLabel ?? false,
+      surfaceTintColor:
+          style.surfaceTintColor ?? defaultPlayingCardStyles.surfaceTintColor,
+      cardBackgroundColor: style.cardBackgroundColor ??
+          defaultPlayingCardStyles.cardBackgroundColor);
 }

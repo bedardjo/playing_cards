@@ -64,6 +64,8 @@ class PlayingCardView extends StatelessWidget {
       child: Card(
         shape: shape,
         elevation: elevation,
+        surfaceTintColor: reconciled.surfaceTintColor,
+        color: reconciled.cardBackgroundColor,
         clipBehavior: Clip.antiAlias,
         child: cardBody,
       ),
