@@ -1,7 +1,7 @@
 name: playing_cards
 description: A rendering library for standard 52 card decks in your Flutter app. Use this package if you want to render good looking playing cards without too much fuss.
 
-version: 0.4.0+10
+version: 0.4.1+11
 
 repository: https://github.com/bedardjo/playing_cards
 

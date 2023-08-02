@@ -1,4 +1,8 @@
-## [0.4.0+10] - 2022-04-19
+## [0.4.1+11] - 2023-08-02
+
+- Fix for material3 card color (more customizability)
+
+## [0.4.0+10] - 2023-08-02
 
 - A few community updates!
 - Library updates
